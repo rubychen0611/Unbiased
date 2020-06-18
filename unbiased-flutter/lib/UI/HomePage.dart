@@ -1,10 +1,14 @@
 // 主页：显示新闻组
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:unbiased/DataModel/NewsGroup.dart';
+import 'package:unbiased/Common/Global.dart';
+import 'package:unbiased/UI/ArticlePage.dart';
+
 
 class HomePage extends StatefulWidget {  //有状态组件
-  HomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  HomePage({Key key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,8 +27,7 @@ class _HomePageState extends State<HomePage> {
           title: Text("Unbiased"),
           centerTitle: true,
         ),
-        body:
-        SingleChildScrollView(
+        body:SingleChildScrollView(
           child: Container(
             child: FutureBuilder<List<NewsGroup>>(
             future: future_news_group,
@@ -36,9 +39,9 @@ class _HomePageState extends State<HomePage> {
                 }
                 else if (snapshot.hasError)
                 {
-                return Text("${snapshot.error}");
+                return Center(child: Text("${snapshot.error}"));
                 }
-                return CircularProgressIndicator();   // 显示进度条
+                return Center(child:CircularProgressIndicator());   // 显示进度条
             }
           ),
           )
@@ -47,20 +50,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   // 新闻主面板
-//  Widget buildNewsGroupPanel(BuildContext context) {
-//    getNewsGroupData().then((data)
-//    {
-//      // 成功获取数据，返回可展开列表
-//      news_group = data;
-//      //print(news_group[0].group_title);
-//      return buildNewsGroupPanelList();
-//    }).catchError((e) {
-//      // 否则返回进度条
-//      return Text("error!");
-//    }).whenComplete(() => null)
-//    return LinearProgressIndicator();
-//  }
-
   Widget buildNewsGroupPanel(List<NewsGroup> news_group)
   {
     return ExpansionPanelList(
@@ -82,20 +71,24 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     flex: 10,
                     child: Text(
-                        item.rank.toString(), style: TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center),
+                        item.rank.toString(), style: TextStyle(fontSize: 18),     // 排名/序号
+                        textAlign: TextAlign.center
+                    ),
                   ),
                   Expanded(
                     flex: 62,
-                    child: Text(item.group_title, style: TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w700)),
+                    child: Text(item.group_title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)), // 新闻组标题
                   ),
                   Expanded(
                     flex: 28,
                     child: Padding(
-                      //左边添加8像素补白
+                      //左边添加补白
                         padding: const EdgeInsets.only(left: 3.0),
-                        child: Image.asset("images/blank.png")
+                        child: CachedNetworkImage(      // 新闻组代表图片（可缓存）
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            imageUrl: item.img_url,
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
                     ),
                   ),
                 ],
@@ -109,13 +102,35 @@ class _HomePageState extends State<HomePage> {
               physics: NeverScrollableScrollPhysics(),
               //禁用滑动事件
               shrinkWrap: true,
-              itemCount: 3,
+              itemCount: item.articles.length,
               //item.articles.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  leading: Icon(Icons.ac_unit), // 媒体logo
-                  title: Text('media name'), // 媒体名 时间
-                  trailing: Icon(Icons.sentiment_satisfied), // 情绪图标
+                return
+                 ListTile(
+                  leading: CachedNetworkImage(
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    imageUrl: item.articles[index].media.logo_url,
+                    height: 32,
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ), // 媒体logo
+                  title: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Text(item.articles[index].media.name, style: TextStyle(fontSize: 20)), // 媒体名
+                        SizedBox(width: 15),
+                        Text(Global.getArticleTime(item.articles[index].date), style: TextStyle(color: Colors.grey))//// 时间
+                    ]
+                  ),
+                  trailing: Global.getSentimentIcon(item.articles[index].score), // 情绪图标
+                  onTap:  () {
+                        //导航到新闻详情页
+                        Navigator.push( context,
+                            MaterialPageRoute(builder: (context) {
+                              return ArticlePage(article:item.articles[index]);
+                           }
+                           )
+                        );
+                  }, // onTap: ,
                 );
               },
               separatorBuilder: (BuildContext context,
@@ -129,3 +144,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+
+
+

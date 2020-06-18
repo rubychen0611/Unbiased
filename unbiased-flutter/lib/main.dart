@@ -6,10 +6,8 @@ void main() {
       'U83hlMObhFRFRS4kX3lOxSlq-gzGzoHsz', 'Jw2Y6KFFsjI5kEz1qYqQ62da',
       server: 'https://u83hlmob.lc-cn-n1-shared.com',
       queryCache: new LCQueryCache());
-  //LCLogger.setLevel(LCLogger.DebugLevel);
-//  LCObject object = LCObject('TestObject');
-//  object['words'] = 'Hello world!';
-//  object.save();
+      //LCLogger.setLevel(LCLogger.DebugLevel);     / / 启动LeanCloud调试
+
   runApp(UnbiasedApp());
 }
 
@@ -26,7 +24,7 @@ class UnbiasedApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       //应用首页路由
-      home: HomePage(title: 'Unbiased'),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
