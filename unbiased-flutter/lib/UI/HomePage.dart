@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    future_news_group = getNewsGroupData(); // 获取数据
+    future_news_group = getNewsGroupData(); // 获取新闻数据
   }
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 }
                 else if (snapshot.hasError)
                 {
-                return Center(child: Text("${snapshot.error}"));
+                return Center(child: Text("${snapshot.error}"));      // 显示错误
                 }
                 return Center(child:CircularProgressIndicator());   // 显示进度条
             }
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
-          news_group[index].is_expanded = !isExpanded;
+          news_group[index].is_expanded = !isExpanded;      // 切换展开状态
         });
       },
       children: news_group.map<ExpansionPanel>((NewsGroup item) {
@@ -105,8 +105,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: item.articles.length,
               //item.articles.length,
               itemBuilder: (BuildContext context, int index) {
-                return
-                 ListTile(
+                return ListTile(
                   leading: CachedNetworkImage(
                     placeholder: (context, url) => CircularProgressIndicator(),
                     imageUrl: item.articles[index].media.logo_url,

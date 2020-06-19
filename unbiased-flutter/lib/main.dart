@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'UI/HomePage.dart';
 void main() {
+  // 初始化LeanCloud
   LeanCloud.initialize(
       'U83hlMObhFRFRS4kX3lOxSlq-gzGzoHsz', 'Jw2Y6KFFsjI5kEz1qYqQ62da',
       server: 'https://u83hlmob.lc-cn-n1-shared.com',

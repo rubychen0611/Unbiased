@@ -17,6 +17,8 @@ class Global {
     else
       return Icon(Icons.sentiment_very_satisfied, color: Colors.green, size:40,);
   }
+
+
   // 将文章发表时间转化为与当前时间差字符串
   static String getArticleTime(DateTime old)
   {
