@@ -41,47 +41,45 @@ class NewsGroup{
 // 从Firestore数据库获取新闻数据
 Future<List<NewsGroup>> getNewsGroupData() async
 {
-  List<NewsGroup> news_groups = new List<NewsGroup>();   // 新闻组详细信息
-  List<LCObject> group_ranks;     // 新闻组排名索引（从rank文档中获得）
+  List<NewsGroup> news_groups = new List<NewsGroup>();   // 存储新闻组详细信息
 
-  // 获取新闻组排名
-  LCQuery<LCObject> query_rank = LCQuery('Rank');
-  query_rank.orderByAscending('rank');
-  group_ranks = await query_rank.find();
+  // 获取新闻组
+  LCQuery<LCObject> query = LCQuery('NewsGroup');
+  query.orderByDescending('ScoreDifference');     // 按情绪分析最大与最小分数之差排序
+  query.limit(15);          // 最多显示前15条
+  query.include('Image.url');
+  List<LCObject> group_objs = await query.find();
 
   //获取各新闻组详细信息
-  LCQuery<LCObject> query_group = LCQuery('NewsGroup'),
-      query_file = LCQuery('_File'),
-      query_article = LCQuery('Article'),
-      query_media = LCQuery('Media');
-  for (LCObject rank_obj in group_ranks)
-  {
-    LCObject group_obj = await query_group.get(rank_obj['group'].objectId);   // 获得NewsGroup对象
-    LCObject img_file_obj = await query_file.get(group_obj['Image'].objectId); // 获得图片文件对象
-    List<dynamic> article_ids = group_obj['Articles'];
+  for (int i = 0; i < group_objs.length; i++) {
+    List<dynamic> article_ids = group_objs[i]['Articles'];
     List<Article> articles = [];
     // 获取各文章详细信息
-    for(String article_id in article_ids)
+    LCQuery<LCObject> query_article = LCQuery('Article');
+    query_article.include('Media.Name');
+    query_article.include('Media.Logo.url');
+    query_article.whereContainedIn('objectId', article_ids);
+    List<LCObject> article_objs = await query_article.find();
+    for (LCObject article_obj in article_objs)
     {
-      LCObject article_obj = await query_article.get(article_id);
-      LCObject media_obj = await query_media.get(article_obj['Media'].objectId);    // 获取媒体对象
       articles.add(Article(
-        title: article_obj['Title'],
-        media: Media(
-            name: media_obj['Name'],
-            logo_url: media_obj['Logo']['url']
-        ),
-        date: article_obj['Date'],
-        summary: article_obj['Summary'],
-        img_url: article_obj['Image']['url'],
-        score: article_obj['SentimentScore'],
-        link_url: article_obj['Link']
+          title: article_obj['Title'],
+          media: Media(
+            name: article_obj['Media']['Name'],
+            logo_url: article_obj['Media']['Logo']['url'],
+          ),
+          date: article_obj['Date'],
+          summary: article_obj['Summary'],
+          img_url: article_obj['Image']['url'],
+          score: article_obj['SentimentScore'],
+          link_url: article_obj['Link']
       ));
     }
+
     news_groups.add(NewsGroup(
-        rank:rank_obj['rank'],
-        group_title: group_obj['Title'],
-        img_url: img_file_obj['url'],
+        rank: i + 1,
+        group_title: group_objs[i]['Title'],
+        img_url: group_objs[i]['Image']['url'],
         articles: articles)
     );
   }

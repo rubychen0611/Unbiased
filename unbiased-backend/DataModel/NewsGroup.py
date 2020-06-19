@@ -1,0 +1,2 @@
+class NewsGroup:
+    pass

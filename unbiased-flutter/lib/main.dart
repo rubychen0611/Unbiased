@@ -7,7 +7,7 @@ void main() {
       'U83hlMObhFRFRS4kX3lOxSlq-gzGzoHsz', 'Jw2Y6KFFsjI5kEz1qYqQ62da',
       server: 'https://u83hlmob.lc-cn-n1-shared.com',
       queryCache: new LCQueryCache());
-      //LCLogger.setLevel(LCLogger.DebugLevel);     / / 启动LeanCloud调试
+      // LCLogger.setLevel(LCLogger.DebugLevel);     // 启动LeanCloud调试
 
   runApp(UnbiasedApp());
 }
