@@ -45,16 +45,16 @@ Future<List<NewsGroup>> getNewsGroupData() async
 
   // 获取新闻组
   LCQuery<LCObject> query = LCQuery('NewsGroup');
-  query.orderByDescending('ScoreDifference');     // 按情绪分析最大与最小分数之差排序
-  query.limit(15);          // 最多显示前15条
-  query.include('Image.url');
+  query.orderByDescending('RankScore');     // 按得分排序
+  //query.limit(15);          // 最多显示前15条
+  //query.include('Image.url');
   List<LCObject> group_objs = await query.find();
 
   //获取各新闻组详细信息
   for (int i = 0; i < group_objs.length; i++) {
     List<dynamic> article_ids = group_objs[i]['Articles'];
     List<Article> articles = [];
-    // 获取各文章详细信息
+    // 获取组内各文章详细信息
     LCQuery<LCObject> query_article = LCQuery('Article');
     query_article.include('Media.Name');
     query_article.include('Media.Logo.url');
@@ -70,7 +70,7 @@ Future<List<NewsGroup>> getNewsGroupData() async
           ),
           date: article_obj['Date'],
           summary: article_obj['Summary'],
-          img_url: article_obj['Image']['url'],
+          img_url: article_obj['ImageURL'],
           score: article_obj['SentimentScore'],
           link_url: article_obj['Link']
       ));
@@ -79,7 +79,7 @@ Future<List<NewsGroup>> getNewsGroupData() async
     news_groups.add(NewsGroup(
         rank: i + 1,
         group_title: group_objs[i]['Title'],
-        img_url: group_objs[i]['Image']['url'],
+        img_url: group_objs[i]['ImageURL'],
         articles: articles)
     );
   }
