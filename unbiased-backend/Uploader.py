@@ -100,5 +100,5 @@ class Uploader:
 
 
 
-uploader = Uploader(date='20200620')
+uploader = Uploader(date='20200629')
 uploader.upload_new_groups()

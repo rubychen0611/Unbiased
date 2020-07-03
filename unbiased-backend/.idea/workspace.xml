@@ -10,26 +10,69 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/unbiased_backend$Cluster.coverage" NAME="Cluster Coverage Results" MODIFIED="1593190444390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Cluster.coverage" NAME="Cluster Coverage Results" MODIFIED="1593535811914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$mysql.coverage" NAME="mysql Coverage Results" MODIFIED="1592811489741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$media_list.coverage" NAME="media_list Coverage Results" MODIFIED="1593449858391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$one_hot.coverage" NAME="one_hot Coverage Results" MODIFIED="1593163820983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$Crawler.coverage" NAME="Crawler Coverage Results" MODIFIED="1592673048590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$Uploader.coverage" NAME="Uploader Coverage Results" MODIFIED="1593257838513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$test.coverage" NAME="test Coverage Results" MODIFIED="1592643329209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Crawler.coverage" NAME="Crawler Coverage Results" MODIFIED="1593495666655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Uploader.coverage" NAME="Uploader Coverage Results" MODIFIED="1593769687262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$test.coverage" NAME="test Coverage Results" MODIFIED="1593753840530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1593186045297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$Analyzer.coverage" NAME="Analyzer Coverage Results" MODIFIED="1593234737888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Analyzer.coverage" NAME="Analyzer Coverage Results" MODIFIED="1593754439718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$Twisted_Trial_in_test_one_hot_py.coverage" NAME="Twisted Trial in test_one_hot.py Coverage Results" MODIFIED="1593163777976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Crawler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Crawler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="64" column="19" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="64" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Analyzer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Analyzer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="84" column="20" lean-forward="true" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="104" selection-start-line="104" selection-end-line="107" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Cluster.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cluster.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="50" column="35" selection-start-line="42" selection-start-column="8" selection-end-line="50" selection-end-column="35" />
+            <state relative-caret-position="2882">
+              <caret line="149" column="27" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
               <folding>
-                <element signature="e#0#27#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="media_list.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="357" column="17" selection-start-line="357" selection-start-column="17" selection-end-line="357" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -37,8 +80,8 @@
       <file leaf-file-name="Uploader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Uploader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-523">
-              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+            <state relative-caret-position="-569">
+              <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
               <folding>
                 <element signature="e#21#32#0" expanded="true" />
               </folding>
@@ -46,48 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="object_.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/leancloud/object_.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1716">
-              <caret line="191" column="9" selection-start-line="191" selection-start-column="9" selection-end-line="191" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="media.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/media.csv">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Analyzer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Analyzer.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="132">
               <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Article.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataModel/Article.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewsGroup.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -107,6 +113,9 @@
       <find>tokenizer</find>
       <find>pattern</find>
       <find>objectid</find>
+      <find>unable</find>
+      <find>nlp</find>
+      <find>https://www.themoscowtimes.com/</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -116,18 +125,18 @@
         <option value="$PROJECT_DIR$/DataModel/NewsGroup.py" />
         <option value="$PROJECT_DIR$/DataModel/Article.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/data/media.csv" />
-        <option value="$PROJECT_DIR$/media_list.py" />
-        <option value="$PROJECT_DIR$/Crawler.py" />
         <option value="$PROJECT_DIR$/mysql.py" />
         <option value="$PROJECT_DIR$/MySQLConnector.py" />
         <option value="$PROJECT_DIR$/test_one_hot.py" />
         <option value="$PROJECT_DIR$/one_hot.py" />
         <option value="$PROJECT_DIR$/test1.py" />
         <option value="$PROJECT_DIR$/Cluster.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/Crawler.py" />
         <option value="$PROJECT_DIR$/Analyzer.py" />
         <option value="$PROJECT_DIR$/Uploader.py" />
+        <option value="$PROJECT_DIR$/media_list.py" />
       </list>
     </option>
   </component>
@@ -151,6 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,24 +171,12 @@
             <path>
               <item name="unbiased-backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="unbiased-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unbiased-backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unbiased-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="articles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unbiased-backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unbiased-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="DataModel" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,6 +243,25 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="Crawler" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="unbiased-backend" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Crawler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="Uploader" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="unbiased-backend" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -264,7 +281,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="one_hot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="unbiased-backend" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -277,26 +294,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/one_hot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="test1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="unbiased-backend" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -304,8 +302,8 @@
     </configuration>
     <list>
       <item itemvalue="Python.Cluster" />
-      <item itemvalue="Python.one_hot" />
-      <item itemvalue="Python.test1" />
+      <item itemvalue="Python.Crawler" />
+      <item itemvalue="Python.test" />
       <item itemvalue="Python.Analyzer" />
       <item itemvalue="Python.Uploader" />
     </list>
@@ -313,9 +311,9 @@
       <list>
         <item itemvalue="Python.Uploader" />
         <item itemvalue="Python.Analyzer" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.Cluster" />
-        <item itemvalue="Python.test1" />
-        <item itemvalue="Python.one_hot" />
+        <item itemvalue="Python.Crawler" />
       </list>
     </recent_temporary>
   </component>
@@ -348,22 +346,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.17876107" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.22312045" side_tool="true" visible="true" weight="0.4884956" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.118835896" side_tool="true" visible="true" weight="0.2920354" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.738076" weight="0.34867257" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.77687955" weight="0.32743362" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.88116413" weight="0.2920354" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.8156831" weight="0.26371682" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27405012" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29830235" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7485853" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.74777687" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -376,24 +373,24 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25788197" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" visible="true" weight="0.17876107" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.49734512" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.47964603" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2920354" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.47964603" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +401,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -428,13 +425,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Article.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/Article.py" />
     <entry file="file://$PROJECT_DIR$/Cleaner.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -442,13 +433,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="41" column="31" lean-forward="true" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mysql.py" />
     <entry file="file://$PROJECT_DIR$/Crawler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2574">
@@ -456,9 +441,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/media.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/media.csv" />
     <entry file="file://$PROJECT_DIR$/media_list.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
@@ -466,9 +449,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/articles/20200620/20200620.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/articles/20200620/20200620.csv" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/newspaper/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -484,13 +465,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Article.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/Article.py" />
     <entry file="file://$PROJECT_DIR$/Cleaner.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -498,13 +473,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py" />
     <entry file="file://$PROJECT_DIR$/Crawler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -526,20 +495,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Article.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Media.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/Article.py" />
+    <entry file="file://$PROJECT_DIR$/DataModel/Media.py" />
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py" />
     <entry file="file://$PROJECT_DIR$/Crawler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -561,19 +520,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Article.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Media.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/newspaper/article.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/Article.py" />
+    <entry file="file://$PROJECT_DIR$/DataModel/Media.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/newspaper/source.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-60">
@@ -588,52 +536,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/articles/20200620/20200620.csv">
-      <provider editor-type-id="csv-text-editor">
-        <state relative-caret-position="-5883">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Media.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MySQLConnector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Crawler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1430">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/Article.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/articles/20200620/20200620.csv" />
+    <entry file="file://$PROJECT_DIR$/DataModel/Media.py" />
+    <entry file="file://$PROJECT_DIR$/DataModel/NewsGroup.py" />
     <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1684618003/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -648,15 +553,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/one_hot.py" />
-    <entry file="file://$PROJECT_DIR$/mysql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="44" column="25" selection-start-line="43" selection-start-column="8" selection-end-line="44" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test1.py" />
     <entry file="file://$PROJECT_DIR$/Cleaner.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -665,45 +562,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Analyzer.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/media.csv">
-      <provider editor-type-id="csv-text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media_list.py">
+    <entry file="file://$PROJECT_DIR$/data/media.csv" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/leancloud/object_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="29" />
+        <state relative-caret-position="3894">
+          <caret line="191" column="9" selection-start-line="191" selection-start-column="9" selection-end-line="191" selection-end-column="9" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataModel/Article.py" />
+    <entry file="file://$PROJECT_DIR$/MySQLConnector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysql.py" />
     <entry file="file://$PROJECT_DIR$/Cluster.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="50" column="35" selection-start-line="42" selection-start-column="8" selection-end-line="50" selection-end-column="35" />
+        <state relative-caret-position="2882">
+          <caret line="149" column="27" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/leancloud/object_.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/newspaper/article.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1716">
-          <caret line="191" column="9" selection-start-line="191" selection-start-column="9" selection-end-line="191" selection-end-column="9" />
+        <state relative-caret-position="-418">
+          <caret line="113" column="30" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="30" />
+          <folding>
+            <element signature="e#146#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="104" selection-start-line="104" selection-end-line="107" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Crawler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="64" column="19" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="64" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="84" column="20" lean-forward="true" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="357" column="17" selection-start-line="357" selection-start-column="17" selection-end-line="357" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Uploader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-523">
-          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+        <state relative-caret-position="-569">
+          <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
           <folding>
             <element signature="e#21#32#0" expanded="true" />
           </folding>
