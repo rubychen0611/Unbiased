@@ -130,7 +130,14 @@ class ArticlePage extends StatelessWidget {
                     color: Colors.blue,
                     onPressed:(){
                       // WebView跳转
-                      Navigator.push(context, MaterialPageRoute(builder: (cx) => WebViewPage()));
+                      print(article.link_url);
+                      Navigator.of(context)
+                          .push(new MaterialPageRoute(builder: (_) {
+                        return new WebViewPage(
+                          url: article.link_url,
+                        );
+                      }));
+//                      Navigator.push(context, MaterialPageRoute(builder: (cx) => WebViewPage(article.link_url)));
                     },
 
                   ),
@@ -193,7 +200,6 @@ class WebViewPageState extends State<WebViewPage> {
   String url;
   WebViewPageState({this.url});
   WebViewController _controller;
-  double _height = 700;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -201,31 +207,11 @@ class WebViewPageState extends State<WebViewPage> {
       appBar: AppBar(
         title: Text('WebSite'),
       ),
-      body: ListView(
-        children: <Widget>[
-          SizedBox(
-            height: _height,
-            child: Card(
-              child: WebView(
-                initialUrl: url,
-                javascriptMode: JavascriptMode.unrestricted,
-//                onWebViewCreated: (WebViewController webViewController) {
-//                  _controller.complete(webViewController);
-//                },
-                onPageFinished: (url) {
-                  //调用JS得到实际高度
-                  _controller.evaluateJavascript("document.documentElement.clientHeight;").then((result){
-                    setState(() {
-                      _height = double.parse(result);
-                      print("高度$_height");
-                    });
-                  }
-                  );
-                },
-              ),
-            ),
-          )
-        ],
+      body: SafeArea(
+        child: WebView(
+          initialUrl: url,
+          javascriptMode: JavascriptMode.unrestricted,
+        ),
       ),
     );
   }
