@@ -31,14 +31,14 @@ class ArticlePage extends StatelessWidget {
         ),
         body: new ListView(
           children: <Widget>[
-            CachedNetworkImage( // 新闻图片（可缓存）
+            article.img_url!=null? CachedNetworkImage( // 新闻图片（可缓存）
               placeholder: (context, url) =>
                   CircularProgressIndicator(),
               imageUrl: article.img_url,
               errorWidget: (context, url, error) => Icon(Icons.error),
               height: 180.0,
               fit: BoxFit.cover,
-            ),
+            ) : Container(),
             Container(
               padding: const EdgeInsets.symmetric(
                   horizontal: 10.0, vertical: 5.0),
