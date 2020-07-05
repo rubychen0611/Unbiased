@@ -89,5 +89,5 @@ class Analyzer:
                 self.connector.db.rollback()
         self.connector.disconnect()
 
-analyzer = Analyzer(date='20200629')
+analyzer = Analyzer(date='20200704')
 analyzer.analyze()

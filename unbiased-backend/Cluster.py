@@ -37,7 +37,7 @@ class Cluster():
         self.date=date
         self.connector = MySQLConnector()
 
-        self.logger = logging.getLogger('cluater')
+        self.logger = logging.getLogger('cluster')
         self.logger.setLevel(level=logging.DEBUG)
         ch = logging.StreamHandler()
         ch.setLevel(logging.DEBUG)  # 输出到console的log等级的开关
@@ -161,7 +161,7 @@ class Cluster():
         self.connector.disconnect()
         self.logger.info("Successfully update group indices.")
 
-cluster = Cluster(date='20200629')
+cluster = Cluster(date='20200704')
 # cluster.remove_useless_articles() # 执行一次即可
 cluster.load_articles()
 cluster.cluster()

@@ -25,6 +25,10 @@ dependencies:
     sdk: flutter
   leancloud_storage: ^0.2.9
   cached_network_image:
+  fluttertoast: ^3.1.3
+  shared_preferences:
+  provider: ^3.0.0+1
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -62,12 +66,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: MyIcons
+      fonts:
+        - asset: iconfont/myicons.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
@@ -76,5 +78,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+#  random_pk: any
+#  font_awesome_flutter: any
   assets:
     - images/blank.png

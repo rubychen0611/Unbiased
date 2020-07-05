@@ -10,15 +10,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/unbiased_backend$Cluster.coverage" NAME="Cluster Coverage Results" MODIFIED="1593535811914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Cluster.coverage" NAME="Cluster Coverage Results" MODIFIED="1593836006116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$mysql.coverage" NAME="mysql Coverage Results" MODIFIED="1592811489741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$media_list.coverage" NAME="media_list Coverage Results" MODIFIED="1593449858391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$one_hot.coverage" NAME="one_hot Coverage Results" MODIFIED="1593163820983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$Crawler.coverage" NAME="Crawler Coverage Results" MODIFIED="1593495666655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$Uploader.coverage" NAME="Uploader Coverage Results" MODIFIED="1593769687262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Crawler.coverage" NAME="Crawler Coverage Results" MODIFIED="1593796193805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Uploader.coverage" NAME="Uploader Coverage Results" MODIFIED="1593841680952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$test.coverage" NAME="test Coverage Results" MODIFIED="1593753840530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1593186045297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/unbiased_backend$Analyzer.coverage" NAME="Analyzer Coverage Results" MODIFIED="1593754439718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/unbiased_backend$Analyzer.coverage" NAME="Analyzer Coverage Results" MODIFIED="1593836702278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/unbiased_backend$Twisted_Trial_in_test_one_hot_py.coverage" NAME="Twisted Trial in test_one_hot.py Coverage Results" MODIFIED="1593163777976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -26,10 +26,22 @@
       <file leaf-file-name="Crawler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Crawler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1144">
-              <caret line="64" column="19" selection-start-line="62" selection-start-column="4" selection-end-line="64" selection-end-column="19" />
+            <state relative-caret-position="68">
+              <caret line="90" column="25" lean-forward="true" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cluster.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cluster.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1">
+              <caret line="161" column="17" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,8 +50,8 @@
       <file leaf-file-name="Analyzer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1716">
-              <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+            <state relative-caret-position="224">
+              <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -56,23 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cluster.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cluster.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2882">
-              <caret line="149" column="27" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="media_list.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/media_list.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7854">
-              <caret line="357" column="17" selection-start-line="357" selection-start-column="17" selection-end-line="357" selection-end-column="30" />
+            <state relative-caret-position="66">
+              <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -80,8 +80,8 @@
       <file leaf-file-name="Uploader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Uploader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+            <state relative-caret-position="26">
+              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
               <folding>
                 <element signature="e#21#32#0" expanded="true" />
               </folding>
@@ -131,12 +131,12 @@
         <option value="$PROJECT_DIR$/test_one_hot.py" />
         <option value="$PROJECT_DIR$/one_hot.py" />
         <option value="$PROJECT_DIR$/test1.py" />
-        <option value="$PROJECT_DIR$/Cluster.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/media_list.py" />
         <option value="$PROJECT_DIR$/Crawler.py" />
+        <option value="$PROJECT_DIR$/Cluster.py" />
         <option value="$PROJECT_DIR$/Analyzer.py" />
         <option value="$PROJECT_DIR$/Uploader.py" />
-        <option value="$PROJECT_DIR$/media_list.py" />
       </list>
     </option>
   </component>
@@ -311,9 +311,9 @@
       <list>
         <item itemvalue="Python.Uploader" />
         <item itemvalue="Python.Analyzer" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.Cluster" />
         <item itemvalue="Python.Crawler" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -348,13 +348,13 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.17876107" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1851253" side_tool="true" visible="true" weight="0.46902654" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1196443" side_tool="true" weight="0.4141593" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.738076" weight="0.34867257" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.88116413" weight="0.2920354" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.8148747" visible="true" weight="0.46902654" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3031528" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8803557" weight="0.4884956" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.8132579" weight="0.21592921" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31285366" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -586,16 +586,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysql.py" />
-    <entry file="file://$PROJECT_DIR$/Cluster.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2882">
-          <caret line="149" column="27" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/newspaper/article.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-418">
@@ -610,37 +600,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/media_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Crawler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="64" column="19" selection-start-line="62" selection-start-column="4" selection-end-line="64" selection-end-column="19" />
+        <state relative-caret-position="68">
+          <caret line="90" column="25" lean-forward="true" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Analyzer.py">
+    <entry file="file://$PROJECT_DIR$/Cluster.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1716">
-          <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+        <state relative-caret-position="-1">
+          <caret line="161" column="17" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media_list.py">
+    <entry file="file://$PROJECT_DIR$/Analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7854">
-          <caret line="357" column="17" selection-start-line="357" selection-start-column="17" selection-end-line="357" selection-end-column="30" />
+        <state relative-caret-position="224">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Uploader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+        <state relative-caret-position="26">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding>
             <element signature="e#21#32#0" expanded="true" />
           </folding>

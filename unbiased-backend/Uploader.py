@@ -22,7 +22,7 @@ class Uploader:
         cursor = self.connector.connect()
         sql = "SELECT articleIndex,groupIndex,title,publishDate,image,url,mediaObjId,sentimentScore,summary \
                 FROM news.article INNER JOIN news.media ON article.mediaIndex = media.index     \
-                where groupIndex REGEXP '%s'" % self.date
+                where groupIndex is not null "  # REGEXP '%s'"  % self.date
         try:
             cursor.execute(sql)
             articles = cursor.fetchall()
@@ -76,10 +76,10 @@ class Uploader:
         article_num = len(articles)
         if article_num == 3:
             num_score = 3
-        elif 4 <= article_num <= 6:
-            num_score = 5
+        elif 4 <= article_num <= 8:
+            num_score = 10
         else:
-            num_score = 4
+            num_score = 5
 
         senti_scores = []
         media_set = set()
@@ -91,8 +91,10 @@ class Uploader:
             media_score = 0
         elif media_num == 2:
             media_score = 1
-        else:
+        elif media_num <= 4:
             media_score = 5
+        else:
+            media_score = 10
 
         senti_diff = int(np.max(senti_scores) - np.min(senti_scores))
         return num_score + media_score + senti_diff
@@ -100,5 +102,5 @@ class Uploader:
 
 
 
-uploader = Uploader(date='20200629')
+uploader = Uploader(date='20200704')
 uploader.upload_new_groups()

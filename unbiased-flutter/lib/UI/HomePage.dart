@@ -22,12 +22,7 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Unbiased"),
-          centerTitle: true,
-        ),
-        body:SingleChildScrollView(
+    return SingleChildScrollView(
           child: Container(
             child: FutureBuilder<List<NewsGroup>>(
             future: future_news_group,
@@ -45,8 +40,7 @@ class _HomePageState extends State<HomePage> {
             }
           ),
           )
-          )
-        );
+          );
   }
 
   // 新闻主面板

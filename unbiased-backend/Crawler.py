@@ -145,6 +145,6 @@ class Crawler:
         self.logger.info("Successfully get current count = %d ." % count)
         return count
 
-crawler = Crawler(last_date = '20200620', this_date='20200629')
+crawler = Crawler(last_date = '20200629', this_date='20200704')
 
 crawler.crawl()
