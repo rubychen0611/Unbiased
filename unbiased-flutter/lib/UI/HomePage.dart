@@ -1,10 +1,11 @@
 // 主页：显示新闻组
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/UI/ArticlePage.dart';
+
 
 
 class HomePage extends StatefulWidget {  //有状态组件
@@ -14,15 +15,42 @@ class HomePage extends StatefulWidget {  //有状态组件
 }
 
 class _HomePageState extends State<HomePage> {
+  List<NewsGroup> news_groups_all;
   Future<List<NewsGroup>> future_news_group;
+
+  GlobalKey<RefreshHeaderState> _headerKey = new GlobalKey<RefreshHeaderState>(); //定义key
+  GlobalKey<RefreshFooterState> _footerKey = new GlobalKey<RefreshFooterState>(); //定义key
+  var scrollController = new ScrollController(); //声明控制器变量
+  bool ifLoadMore = false;
+
   @override
   void initState() {
     super.initState();
-    future_news_group = getNewsGroupData(); // 获取新闻数据
+    future_news_group = getNewsGroupData(0, false); // 获取新闻数据
   }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return EasyRefresh(    // 下拉刷新
+        refreshHeader: ClassicsHeader(//自定义下拉刷新效果
+          key:_headerKey,
+          bgColor:Colors.white,
+          textColor: Colors.blueGrey,
+          moreInfoColor: Colors.blueGrey,
+          refreshingText: 'loading...', //加载时显示的文字
+          refreshedText: 'refreshed',
+        ),
+        refreshFooter:ClassicsFooter( //自定义上拉加载效果
+          key:_footerKey,
+          bgColor:Colors.white,
+          textColor: Colors.blueGrey,
+          moreInfoColor: Colors.blueGrey,
+          showMore: true,
+          noMoreText: '',
+        ),
+      onRefresh: _refresh,
+      loadMore: _loadMore,
+      child:SingleChildScrollView(
           child: Container(
             child: FutureBuilder<List<NewsGroup>>(
             future: future_news_group,
@@ -40,7 +68,28 @@ class _HomePageState extends State<HomePage> {
             }
           ),
           )
-          );
+          )
+    );
+  }
+
+  // 刷新
+  Future<Null> _refresh() async {
+    future_news_group = getNewsGroupData(0, false);
+    List<NewsGroup> news_groups = await future_news_group;
+    setState(() {
+      news_groups_all.clear();
+      news_groups_all += news_groups;
+    });
+    return;
+  }
+  // 加载更多
+  Future<Null> _loadMore() async {
+    future_news_group = getNewsGroupData(news_groups_all.length, true);
+    List<NewsGroup> news_groups = await future_news_group;
+    setState(() {
+      news_groups_all += news_groups;
+    });
+    return;
   }
 
   // 新闻主面板
@@ -49,10 +98,10 @@ class _HomePageState extends State<HomePage> {
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
-          news_group[index].is_expanded = !isExpanded;      // 切换展开状态
+          news_groups_all[index].is_expanded = !isExpanded;      // 切换展开状态
         });
       },
-      children: news_group.map<ExpansionPanel>((NewsGroup item) {
+      children: news_groups_all.map<ExpansionPanel>((NewsGroup item) {
         // 可展开列表
         return ExpansionPanel(
           // 未展开时主标题内容

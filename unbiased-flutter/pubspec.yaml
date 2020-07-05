@@ -29,6 +29,7 @@ dependencies:
   shared_preferences:
   provider: ^3.0.0+1
   webview_flutter:
+  flutter_easyrefresh: ^1.2.7
 
 
   # The following adds the Cupertino Icons font to your application.

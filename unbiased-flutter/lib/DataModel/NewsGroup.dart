@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 
 
-
 // 媒体
 class Media
 {
@@ -38,15 +37,17 @@ class NewsGroup{
   }
 }
 
-// 从Firestore数据库获取新闻数据
-Future<List<NewsGroup>> getNewsGroupData() async
-{
-  List<NewsGroup> news_groups = new List<NewsGroup>();   // 存储新闻组详细信息
 
+// 从LeanCloud数据库获取新闻数据
+Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
+{
+  List<NewsGroup> news_groups = new List<NewsGroup>();   // 存储新闻组详细信
   // 获取新闻组
   LCQuery<LCObject> query = LCQuery('NewsGroup');
   query.orderByDescending('RankScore');     // 按得分排序
-  //query.limit(15);          // 最多显示前15条
+  query.limit(15);          // 最多显示前15条
+  if (loadMore==true)
+      query.skip(cur_count);
   //query.include('Image.url');
   List<LCObject> group_objs = await query.find();
 
@@ -77,7 +78,7 @@ Future<List<NewsGroup>> getNewsGroupData() async
     }
 
     news_groups.add(NewsGroup(
-        rank: i + 1,
+        rank: cur_count + i + 1,
         group_title: group_objs[i]['Title'],
         img_url: group_objs[i]['ImageURL'],
         articles: articles)
