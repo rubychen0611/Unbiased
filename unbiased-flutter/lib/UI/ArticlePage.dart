@@ -200,19 +200,58 @@ class WebViewPageState extends State<WebViewPage> {
   String url;
   WebViewPageState({this.url});
   WebViewController _controller;
+  bool isLoading = true;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text('WebSite'),
+//        actions: <Widget>[
+//          BlogMenu(_controller.future),
+//        ],
       ),
-      body: SafeArea(
-        child: WebView(
-          initialUrl: url,
-          javascriptMode: JavascriptMode.unrestricted,
+      body: Stack(
+        children: [
+          WebView(
+            initialUrl: url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController controller) {
+              _controller = controller;
+            },
+            navigationDelegate: (NavigationRequest request) {
+              var url = request.url;
+              print("visit $url");
+              setState(() {
+              isLoading = true; // 开始访问页面，更新状态
+            });
+
+            return NavigationDecision.navigate;
+          },
+          onPageFinished: (String url) {
+            setState(() {
+              isLoading = false; // 页面加载完成，更新状态
+            });
+          },
         ),
+          isLoading
+              ? Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+              : Container(),
+        ],
       ),
+//      body: SafeArea(
+//        child: WebView(
+//          initialUrl: url,
+//          javascriptMode: JavascriptMode.unrestricted,
+//          onWebViewCreated: (WebViewController controller) {
+//            _controller = controller;
+//          },
+//        ),
+//      ),
     );
   }
 
