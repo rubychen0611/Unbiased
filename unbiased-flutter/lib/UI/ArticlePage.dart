@@ -87,7 +87,7 @@ class ArticlePage extends StatelessWidget {
                       child: new Container(
                         alignment: Alignment.topRight,
                         child:
-                          Global.getSentimentIcon(article.score),
+                          Global.getSentimentIcon(article.score, 40),
                       ))
                 ],
               ),
@@ -117,7 +117,7 @@ class ArticlePage extends StatelessWidget {
                     child: new Container(
                         child: new Row(
                           children: <Widget>[
-                            new Icon(Icons.link, color: Colors.blue),
+                            new Icon(Icons.link, color: Colors.teal),
                           ],
                         )),
                   ),
@@ -127,7 +127,7 @@ class ArticlePage extends StatelessWidget {
                   ),
                   new IconButton(
                     icon: Icon(Icons.arrow_forward_ios),
-                    color: Colors.blue,
+                    color: Colors.teal,
                     onPressed:(){
                       // WebView跳转
                       Navigator.push(context, MaterialPageRoute(builder: (cx) => WebViewPage()));
@@ -144,7 +144,7 @@ class ArticlePage extends StatelessWidget {
                           iconSize: 30,
                           onPressed:(){
                             Fluttertoast.showToast(
-                              msg: '举报成功',
+                              msg: 'Successfully sent report.',
                               toastLength: Toast.LENGTH_LONG,
                               textColor: Colors.deepOrange,
                               gravity: ToastGravity.BOTTOM,

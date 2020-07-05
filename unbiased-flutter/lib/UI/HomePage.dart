@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
         // 可展开列表
         return ExpansionPanel(
           // 未展开时主标题内容
+          canTapOnHeader: true,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return Container(
               padding: EdgeInsets.all(5.0), //容器内留白
@@ -71,13 +72,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Expanded(
                     flex: 62,
-                    child: Text(item.group_title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)), // 新闻组标题
+                    child: Text(item.group_title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)), // 新闻组标题
                   ),
                   Expanded(
                     flex: 28,
                     child: Padding(
                       //左边添加补白
-                        padding: const EdgeInsets.only(left: 3.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: CachedNetworkImage(      // 新闻组代表图片（可缓存）
                             placeholder: (context, url) => CircularProgressIndicator(),
                             imageUrl: item.img_url,
@@ -106,15 +107,15 @@ class _HomePageState extends State<HomePage> {
                     height: 32,
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ), // 媒体logo
-                  title: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                  title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(item.articles[index].media.name, style: TextStyle(fontSize: 20)), // 媒体名
-                        SizedBox(width: 15),
-                        Text(Global.getArticleTime(item.articles[index].date), style: TextStyle(color: Colors.grey))//// 时间
+                        Text(item.articles[index].title, style: TextStyle(fontSize: 16)), // 媒体名
+                        SizedBox(height: 7),
+                        Text("${item.articles[index].media.name} · ${Global.getArticleTime(item.articles[index].date)}", style: TextStyle(color: Colors.grey, fontSize:14))//// 时间
                     ]
                   ),
-                  trailing: Global.getSentimentIcon(item.articles[index].score), // 情绪图标
+                  trailing: Global.getSentimentIcon(item.articles[index].score, 35), // 情绪图标
                   onTap:  () {
                         //导航到新闻详情页
                         Navigator.push( context,
