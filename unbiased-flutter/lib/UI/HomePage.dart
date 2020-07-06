@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {  //有状态组件
 }
 
 class _HomePageState extends State<HomePage> {
-  List<NewsGroup> news_groups_all;
+  List<NewsGroup> news_groups_all = new List<NewsGroup>();
   Future<List<NewsGroup>> future_news_group;
 
   GlobalKey<RefreshHeaderState> _headerKey = new GlobalKey<RefreshHeaderState>(); //定义key
@@ -26,7 +26,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    future_news_group = getNewsGroupData(0, false); // 获取新闻数据
+    //future_news_group = getNewsGroupData(0, false); // 获取新闻数据
+    _refresh();
   }
 
   @override
