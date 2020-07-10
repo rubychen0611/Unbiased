@@ -1,29 +1,21 @@
 import logging
-
-import jieba.posseg as pseg
-import MySQLdb
 import re
-from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 
 from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
-from sklearn.metrics import jaccard_similarity_score
 import numpy as np
 from sklearn.cluster import DBSCAN
 from sklearn.externals import joblib
 from langdetect import detect
-from langdetect import detect_langs
 from MySQLConnector import MySQLConnector
-from sklearn import preprocessing
 punctuation = '!,;:?"\'.()'
 porter_stemmer = PorterStemmer()
 wordnet_lemmatizer = WordNetLemmatizer()
 
 def myTokenizer(text):
     # 重写sklearn中CountVectorizer的分词方法
-    # 分词
     token_pattern = re.compile(r"(?u)\b\w\w+\b")
     words = token_pattern.findall(text)
 
@@ -135,6 +127,9 @@ class Cluster():
 
         # 打印分组结果
         self.logger.info("Cluster results: %d groups "%  np.max(self.group_list))
+        # for i in range(len(self.group_list)):
+        #     if self.group_list[i] != -1:
+        #         print(str(self.group_list[i])+'\t'+str(self.articles[i][3])+'\t'+self.articles[i][1])
         group_result = {}
         for i,label in enumerate(self.group_list):
             if label not in group_result:
@@ -143,6 +138,7 @@ class Cluster():
         for i in range(0, np.max(self.group_list) + 1):
             print (i)
             print(group_result[i])
+
 
     def upload_groups_to_DB(self):
         cursor = self.connector.connect()
@@ -161,10 +157,10 @@ class Cluster():
         self.connector.disconnect()
         self.logger.info("Successfully update group indices.")
 
-cluster = Cluster(date='20200704')
+# cluster = Cluster(date='20200709')
 # cluster.remove_useless_articles() # 执行一次即可
-cluster.load_articles()
-cluster.cluster()
-cluster.upload_groups_to_DB()
+# cluster.load_articles()
+# cluster.cluster()
+# cluster.upload_groups_to_DB()
 
 

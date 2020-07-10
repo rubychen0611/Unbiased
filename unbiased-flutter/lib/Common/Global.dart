@@ -1,4 +1,4 @@
-// 全局变量及共享状态
+// 全局变量
 import 'dart:convert';
 import 'package:flutter/material.dart';
 //import 'package:leancloud_storage/leancloud.dart';

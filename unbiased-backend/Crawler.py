@@ -1,32 +1,17 @@
-import csv
-import os
 import time
 import logging
-
 import MySQLdb
 import newspaper
-import pickle
 import datetime
 import pytz
-
 from MySQLConnector import MySQLConnector
 from media_list import media_list
-media_list_file = './data/media.csv'
+
 covid_19_keywords = ['covid-19', 'coronavirus','covid19' 'covid', '2019-ncov', 'corona', 'wuhan', 'pandemic','epidemic']
 
-
 class Crawler:
-    def __init__(self, last_date, this_date=None):
-        # load media list
-
-        self.last_date = datetime.datetime.strptime(last_date, '%Y%m%d').replace(tzinfo=pytz.utc)
-        if this_date != None:
-            self.today = this_date
-        else:
-            self.today = time.strftime("%Y%m%d", time.localtime())
-
+    def __init__(self, last_date=None, this_date=None):
         self.connector = MySQLConnector()
-
         self.logger = logging.getLogger('crawler')
         self.logger.setLevel(level=logging.DEBUG)
         ch = logging.StreamHandler()
@@ -34,7 +19,21 @@ class Crawler:
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
         self.logger.addHandler(ch)
+
+        # load media list
+        if last_date == None:
+            last_date = self.get_last_date()
+        self.last_date = datetime.datetime.strptime(last_date, '%Y%m%d').replace(tzinfo=pytz.utc)
+
+
+        if this_date != None:
+            self.today = this_date
+        else:
+            self.today = time.strftime("%Y%m%d", time.localtime())
+
         self.logger.info("Finished initialization.")
+
+
 
     def if_covid19_related(self, text):
         '''
@@ -109,6 +108,7 @@ class Crawler:
         self.connector.disconnect()
 
     def upload_article(self, count, media_index, article):
+        self.cursor = self.connector.connect()
         idArticle = '%s%05d' % (self.today, count)
         title = self.preprocess_text(article.title)
         url = self.preprocess_text(article.url)
@@ -126,9 +126,11 @@ class Crawler:
         except MySQLdb._exceptions.OperationalError:
             self.connector.db.rollback()
             self.logger.info("Unable to upload article to DB!")
+        self.connector.disconnect()
 
 
     def get_cur_count(self):
+        self.cursor = self.connector.connect()
         sql = '''select MAX(articleIndex) 
                 from news.article 
               where articleIndex REGEXP '%s';''' % (self.today)
@@ -138,6 +140,7 @@ class Crawler:
         except:
             self.logger.info("Unable to get current count!")
         #print(max_idx)
+        self.connector.disconnect()
         if max_idx[0][0] is None:
             count = 0
         else:
@@ -145,6 +148,23 @@ class Crawler:
         self.logger.info("Successfully get current count = %d ." % count)
         return count
 
-crawler = Crawler(last_date = '20200704', this_date='20200706')
+    def get_last_date(self):
+        self.cursor = self.connector.connect()
+        sql = '''SELECT max(downloadDate) FROM news.article'''
+        try:
+            self.cursor.execute(sql)
+            fetch_result = self.cursor.fetchall()
+        except:
+            self.logger.info("Unable to get last date!")
+        self.connector.disconnect()
+        if fetch_result[0][0] is None:
+            last_date = "20200101"
+        else:
+            last_date = datetime.date.strftime(fetch_result[0][0],'%Y%m%d')
+        print(last_date)
+        self.logger.info("Successfully get lastdate '%s'." % last_date)
+        return last_date
 
-crawler.crawl()
+# crawler = Crawler(last_date = '20200708', this_date='20200709')
+# crawler = Crawler()
+#crawler.crawl()

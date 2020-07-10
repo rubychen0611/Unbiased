@@ -1,9 +1,10 @@
+/* 登录/注册页面*/
+
 import 'package:flutter/material.dart';
 import 'package:unbiased/Common/MyIcons.dart';
 import 'package:unbiased/UI/SignInPage.dart';
 import 'package:unbiased/UI/SignUpPage.dart';
 
-/* 登录/注册页面*/
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);

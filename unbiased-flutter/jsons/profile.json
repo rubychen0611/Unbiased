@@ -1,8 +1,0 @@
-{
-  "user":"ruby", // 用户名
-  "token":"", // 登录用户的token(oauth)或密码
-  //"theme":5678, //主题色值
- // "cache":"$cacheConfig", // 缓存策略信息，结构见"cacheConfig.json"
-  "lastLogin":"" //最近一次的注销登录的用户名
- // "locale":"" // APP语言信息
-}

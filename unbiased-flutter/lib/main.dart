@@ -1,10 +1,12 @@
+/* Unbiased App 入口*/
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:leancloud_storage/leancloud.dart';
-// import 'UI/HomePage.dart';
 import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/Common/State.dart';
 import 'UI/IndexPage.dart';
+import 'UI/SplashPage.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Global.init();
@@ -33,7 +35,7 @@ class UnbiasedApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       //应用首页路由
-      home: IndexPage(),
+      home: SplashPage(),   // 进入开屏页
       debugShowCheckedModeBanner: false,
     )
     );

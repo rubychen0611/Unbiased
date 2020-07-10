@@ -1,3 +1,4 @@
+/* 登录页面 */
 import 'package:flutter/material.dart';
 import 'package:unbiased/Common/MyIcons.dart';
 import 'package:unbiased/DataModel/Profile.dart';
@@ -7,9 +8,6 @@ import 'package:unbiased/Common/State.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-/**
- * 注册界面
- */
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => new _SignUpPageState();

@@ -1,3 +1,4 @@
+/* 我的页面 */
 import 'package:flutter/material.dart';
 import 'package:unbiased/Common/MyIcons.dart';
 import 'package:unbiased/UI/LoginPage.dart';
@@ -11,22 +12,6 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  String _userInfo;
-//
-//  void _requestData() async {
-//    UserInfo userInfo = await PXRequest.px_getuser();
-//    print(userInfo.userName);
-//    setState(() {
-//      _userInfo = userInfo;
-//    });
-//  }
-
-//  @override
-//  void initState() {
-//    super.initState();
-//    _requestData();
-//  }
-
   Widget _cell(int row, IconData iconData, String title, bool ifJump, bool isShowBottomLine) {
     return Consumer<UserModel>(
         builder: (BuildContext context, UserModel userModel, Widget child) {
@@ -49,29 +34,31 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
               print("$row -- $title");
               break;
             case 5:
-              showDialog(
-                context: context,
-                builder: (ctx) {
-                  //退出账号前先弹二次确认窗
-                  return AlertDialog(
-                    content: Text("Sure to log out?"),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text("Cancel"),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                      FlatButton(
-                        child: Text("Yes"),
-                        onPressed: () {
-                          //该赋值语句会触发MaterialApp rebuild
-                          userModel.user = null;
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
+              if (userModel.isLogin) {
+                showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    //退出账号前先弹二次确认窗
+                    return AlertDialog(
+                      content: Text("Sure to log out?"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text("Cancel"),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        FlatButton(
+                          child: Text("Yes"),
+                          onPressed: () {
+                            //该赋值语句会触发MaterialApp rebuild
+                            userModel.user = null;
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
               break;
           }
         },

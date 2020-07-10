@@ -1,3 +1,4 @@
+/* 底部导航栏控制页面切换*/
 import 'package:flutter/material.dart';
 import 'package:unbiased/UI/HomePage.dart';
 import 'package:unbiased/UI/MinePage.dart';

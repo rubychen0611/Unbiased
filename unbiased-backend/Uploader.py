@@ -1,6 +1,4 @@
 # 上传最新的新闻组至leancloud
-import json
-
 from MySQLConnector import MySQLConnector
 import leancloud
 import logging
@@ -22,7 +20,7 @@ class Uploader:
         cursor = self.connector.connect()
         sql = "SELECT articleIndex,groupIndex,title,publishDate,image,url,mediaObjId,sentimentScore,summary \
                 FROM news.article INNER JOIN news.media ON article.mediaIndex = media.index     \
-                where groupIndex is not null "  # REGEXP '%s'"  % self.date
+                where groupIndex REGEXP '%s'"  % self.date
         try:
             cursor.execute(sql)
             articles = cursor.fetchall()
@@ -102,5 +100,5 @@ class Uploader:
 
 
 
-uploader = Uploader(date='20200704')
-uploader.upload_new_groups()
+# uploader = Uploader(date='20200709')
+# uploader.upload_new_groups()

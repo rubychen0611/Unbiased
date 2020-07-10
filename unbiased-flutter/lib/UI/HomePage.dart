@@ -52,24 +52,24 @@ class _HomePageState extends State<HomePage> {
       onRefresh: _refresh,
       loadMore: _loadMore,
       child:SingleChildScrollView(
-          child: Container(
-            child: FutureBuilder<List<NewsGroup>>(
-            future: future_news_group,
-            builder:(context, snapshot)
-            {
-                if(snapshot.hasData)
-                {
-                  return buildNewsGroupPanel(snapshot.data);
-                }
-                else if (snapshot.hasError)
-                {
-                return Center(child: Text("${snapshot.error}"));      // 显示错误
-                }
-                return Center(child:CircularProgressIndicator());   // 显示进度条
-            }
+            child: Container(
+              child: FutureBuilder<List<NewsGroup>>(
+              future: future_news_group,
+              builder:(context, snapshot)
+              {
+                  if(snapshot.hasData)
+                  {
+                    return buildNewsGroupPanel(snapshot.data);
+                  }
+                  else if (snapshot.hasError)
+                  {
+                  return Center(child: Text("${snapshot.error}"));      // 显示错误
+                  }
+                  return Center(child:CircularProgressIndicator());// 显示进度条
+              }
           ),
           )
-          )
+      )
     );
   }
 

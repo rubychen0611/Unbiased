@@ -2,7 +2,6 @@ import logging
 
 from MySQLConnector import MySQLConnector
 from textblob import TextBlob
-from nltk.tokenize import sent_tokenize
 from newspaper.article import Article, ArticleDownloadState
 import numpy as np
 class Analyzer:
@@ -89,5 +88,5 @@ class Analyzer:
                 self.connector.db.rollback()
         self.connector.disconnect()
 
-analyzer = Analyzer(date='20200704')
-analyzer.analyze()
+# analyzer = Analyzer(date='20200709')
+# analyzer.analyze()
