@@ -15,17 +15,17 @@ https://drive.google.com/file/d/1dr0EPRQCG4lW_C1QAvIUQ315qPz4xAGz/view?usp=shari
 
 ## Directory Structure
 - /unbiased-backend
- - Analyzer.py
- - Cleaner.py
- - Cluster.py
- - Crawler.py
- - MySQLConnector.py
- - Uploader.py
- - main.py
- - media_list.py
+   - Analyzer.py
+   - Cleaner.py
+   - Cluster.py
+   - Crawler.py
+   - MySQLConnector.py
+   - Uploader.py
+   - main.py
+   - media_list.py
 - /unbiased-flutter:
- - /lib
-     - /Common
+   - /lib
+      - /Common
          - Global.dart
          - MyIcons.dart
          - State.dart
@@ -41,8 +41,8 @@ https://drive.google.com/file/d/1dr0EPRQCG4lW_C1QAvIUQ315qPz4xAGz/view?usp=shari
         - SignInPage.dart
         - SignUpPage.dart
         - SplashPage.dart
-    - main.dart
-    - …
+   - main.dart
+   - …
 
 ## Run
 ### Run App
