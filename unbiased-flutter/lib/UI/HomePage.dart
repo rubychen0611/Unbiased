@@ -33,43 +33,62 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return EasyRefresh(    // 下拉刷新
-        refreshHeader: ClassicsHeader(//自定义下拉刷新效果
-          key:_headerKey,
-          bgColor:Colors.white,
-          textColor: Colors.blueGrey,
-          moreInfoColor: Colors.blueGrey,
-          refreshingText: 'loading...', //加载时显示的文字
-          refreshedText: 'refreshed',
-        ),
-        refreshFooter:ClassicsFooter( //自定义上拉加载效果
-          key:_footerKey,
-          bgColor:Colors.white,
-          textColor: Colors.blueGrey,
-          moreInfoColor: Colors.blueGrey,
-          showMore: true,
-          noMoreText: '',
-        ),
-      onRefresh: _refresh,
-      loadMore: _loadMore,
-      child:SingleChildScrollView(
-            child: Container(
-              child: FutureBuilder<List<NewsGroup>>(
-              future: future_news_group,
-              builder:(context, snapshot)
-              {
-                  if(snapshot.hasData)
-                  {
-                    return buildNewsGroupPanel(snapshot.data);
-                  }
-                  else if (snapshot.hasError)
-                  {
-                  return Center(child: Text("${snapshot.error}"));      // 显示错误
-                  }
-                  return Center(child:CircularProgressIndicator());// 显示进度条
-              }
+          refreshHeader: ClassicsHeader(//自定义下拉刷新效果
+            key:_headerKey,
+            bgColor:Colors.white,
+            textColor: Colors.blueGrey,
+            moreInfoColor: Colors.blueGrey,
+            refreshingText: 'loading...', //加载时显示的文字
+            refreshedText: 'refreshed',
           ),
-          )
-      )
+          refreshFooter:ClassicsFooter( //自定义上拉加载效果
+            key:_footerKey,
+            bgColor:Colors.white,
+            textColor: Colors.blueGrey,
+            moreInfoColor: Colors.blueGrey,
+            showMore: true,
+            noMoreText: '',
+          ),
+        onRefresh: _refresh,
+        loadMore: _loadMore,
+        child:SingleChildScrollView(
+              child: Container(
+                child: FutureBuilder<List<NewsGroup>>(
+                future: future_news_group,
+                builder:(context, snapshot)
+                {
+                    if(snapshot.hasData)
+                    {
+                      return buildNewsGroupPanel(snapshot.data);        // 显示新闻组
+                    }
+                    else if (snapshot.hasError)
+                    {
+                    return Center(child: Text("${snapshot.error}"));      // 显示错误
+                    }
+                    return Center(child:CircularProgressIndicator());// 显示进度条
+                }
+            ),
+            )
+        )
+      );
+  }
+
+  Widget buildTextField() {
+    // theme设置局部主题
+    return Theme(
+      data: new ThemeData(primaryColor: Colors.grey),
+      child: new TextField(
+        cursorColor: Colors.grey, // 光标颜色
+        // 默认设置
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+            border: InputBorder.none,
+            icon: Icon(Icons.search),
+            hintText: "搜索 flutter 组件",
+            hintStyle: new TextStyle(
+                fontSize: 14, color: Color.fromARGB(50, 0, 0, 0))),
+        style: new TextStyle(fontSize: 14, color: Colors.black),
+      ),
     );
   }
 

@@ -29,6 +29,14 @@ class _IndexState extends State<IndexPage> {
             ]
         ),
         centerTitle: true,
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.search),
+            onPressed: () {
+            // TODO： 搜索
+            }
+        ),
+     ]
         ),
         bottomNavigationBar: BottomNavigationBar( // 底部导航
         items: <BottomNavigationBarItem>[

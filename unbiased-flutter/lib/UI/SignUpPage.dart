@@ -14,7 +14,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  User user = User('', '');
+  User user = User('', '', '');
   String temp_passwd = null;
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
@@ -70,6 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     user_obj.username = this.user.username;
                     user_obj.password = this.user.password;
                     await user_obj.signUp();
+                    this.user.objectId = user_obj.objectId;   // 获取objectId
                     Provider.of<UserModel>(context, listen: false).user = user;
                     Fluttertoast.showToast(msg:'Sign up successfully.');
                     Navigator.of(context).pop();

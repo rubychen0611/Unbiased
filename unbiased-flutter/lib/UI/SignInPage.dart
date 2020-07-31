@@ -19,7 +19,7 @@ class _SignInPageState extends State<SignInPage> {
    * 利用FocusNode和FocusScopeNode来控制焦点
    * 可以通过FocusNode.of(context)来获取widget树中默认的FocusScopeNode
    */
-  User user = User('', '');
+  User user = User('', '', '');
   FocusNode usernameFocusNode = new FocusNode();
   FocusNode passwordFocusNode = new FocusNode();
   FocusScopeNode focusScopeNode = new FocusScopeNode();
@@ -181,6 +181,8 @@ class _SignInPageState extends State<SignInPage> {
             try {
               // 登录成功
               LCUser user_obj = await LCUser.login(this.user.username, this.user.password);
+              this.user.objectId = user_obj.objectId;   // 获取object Id
+              // print(this.user.objectId);
               Provider.of<UserModel>(context, listen: false).user = user;
               Fluttertoast.showToast(msg:'Log in successfully.');
               Navigator.of(context).pop();
