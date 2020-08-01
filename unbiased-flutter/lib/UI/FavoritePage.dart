@@ -1,7 +1,7 @@
+/* 我的收藏页面 */
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:unbiased/Common/Global.dart';
-import 'package:unbiased/Common/MyIcons.dart';
 import 'package:unbiased/Common/Requests.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:unbiased/UI/ArticlePage.dart';

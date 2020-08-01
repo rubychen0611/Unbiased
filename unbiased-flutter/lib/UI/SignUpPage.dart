@@ -1,8 +1,6 @@
 /* 登录页面 */
 import 'package:flutter/material.dart';
-import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/Common/MyIcons.dart';
-import 'package:unbiased/DataModel/Profile.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:unbiased/Common/State.dart';

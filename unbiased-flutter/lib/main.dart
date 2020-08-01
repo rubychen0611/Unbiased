@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:unbiased/Common/Global.dart';
-import 'package:unbiased/Common/State.dart';
-import 'UI/IndexPage.dart';
 import 'UI/SplashPage.dart';
 
 void main() {
