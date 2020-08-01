@@ -1,5 +1,6 @@
 /* 登录页面 */
 import 'package:flutter/material.dart';
+import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/Common/MyIcons.dart';
 import 'package:unbiased/DataModel/Profile.dart';
 import 'package:leancloud_storage/leancloud.dart';
@@ -14,7 +15,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  User user = User('', '', '');
+  String username='', passwd='';
   String temp_passwd = null;
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
@@ -67,11 +68,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   try {
                     // 注册成功
                     LCUser user_obj = LCUser();
-                    user_obj.username = this.user.username;
-                    user_obj.password = this.user.password;
+                    user_obj.username = this.username;
+                    user_obj.password = this.passwd;
                     await user_obj.signUp();
-                    this.user.objectId = user_obj.objectId;   // 获取objectId
-                    Provider.of<UserModel>(context, listen: false).user = user;
+                   // this.user.objectId = user_obj.objectId;   // 获取objectId
+                    Provider.of<UserModel>(context, listen: false).update();
+                    //Global.logIn(user_obj);
                     Fluttertoast.showToast(msg:'Sign up successfully.');
                     Navigator.of(context).pop();
                   } on LCException catch (e) {
@@ -118,7 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 }
               },
               onSaved: (value) {
-                this.user.username = value;
+                this.username = value;
               },
             ),
           ),
@@ -155,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 }
               },
               onSaved: (value) {
-                this.user.password = value;
+                this.passwd = value;
               },
             ),
           ),

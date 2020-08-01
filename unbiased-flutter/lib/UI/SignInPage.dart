@@ -1,6 +1,7 @@
 /* 登录界面 */
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/Common/MyIcons.dart';
 import 'package:unbiased/DataModel/Profile.dart';
 import 'package:leancloud_storage/leancloud.dart';
@@ -19,7 +20,7 @@ class _SignInPageState extends State<SignInPage> {
    * 利用FocusNode和FocusScopeNode来控制焦点
    * 可以通过FocusNode.of(context)来获取widget树中默认的FocusScopeNode
    */
-  User user = User('', '', '');
+  String username = '', passwd = '';
   FocusNode usernameFocusNode = new FocusNode();
   FocusNode passwordFocusNode = new FocusNode();
   FocusScopeNode focusScopeNode = new FocusScopeNode();
@@ -110,7 +111,7 @@ class _SignInPageState extends State<SignInPage> {
                     }
                   },
                   onSaved: (value) {
-                      this.user.username = value;
+                      this.username = value;
                   },
                 ),
               ),
@@ -143,7 +144,7 @@ class _SignInPageState extends State<SignInPage> {
                     }
                   },
                   onSaved: (value) {
-                      this.user.password = value;
+                      this.passwd = value;
                   },
                 ),
               ),
@@ -180,10 +181,10 @@ class _SignInPageState extends State<SignInPage> {
             _SignInFormKey.currentState.save();
             try {
               // 登录成功
-              LCUser user_obj = await LCUser.login(this.user.username, this.user.password);
-              this.user.objectId = user_obj.objectId;   // 获取object Id
+              LCUser user_obj = await LCUser.login(this.username, this.passwd);
+              // Global.logIn(user_obj);
               // print(this.user.objectId);
-              Provider.of<UserModel>(context, listen: false).user = user;
+              Provider.of<UserModel>(context, listen: false).update();
               Fluttertoast.showToast(msg:'Log in successfully.');
               Navigator.of(context).pop();
             } on LCException catch (e) {

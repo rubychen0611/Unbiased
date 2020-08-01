@@ -1,29 +1,35 @@
 // 全局变量
 import 'dart:convert';
 import 'package:flutter/material.dart';
-//import 'package:leancloud_storage/leancloud.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:unbiased/Common/State.dart';
 import 'package:unbiased/DataModel/Profile.dart';
 class Global {
-  static SharedPreferences _prefs;
-  static Profile profile = Profile();
+//  static SharedPreferences _prefs;
+//  static Profile profile = Profile();
+  static UserModel userModel;
   static Future init() async {
-    _prefs = await SharedPreferences.getInstance();
-    var _profile = _prefs.getString("profile");
-    if (_profile != null) {
-      try {
-        profile = Profile.fromJson(jsonDecode(_profile));
-      } catch (e) {
-        print(e);
-      }
-    }
+//    _prefs = await SharedPreferences.getInstance();
+//    var _profile = _prefs.getString("profile");
+//    if (_profile != null) {
+//      try {
+//        profile = Profile.fromJson(jsonDecode(_profile));
+//      } catch (e) {
+//        print(e);
+//      }
+//    }
+    userModel = UserModel();
+    LCUser currentUser = await LCUser.getCurrent();
+    userModel.setUser(currentUser);
   }
-  static saveProfile() {
-    if (profile.user != null)
-      _prefs.setString("profile", jsonEncode(profile.toJson ()));
-    else
-      _prefs.remove("profile");
-  }
+
+//  static saveProfile() {
+//    if (profile.user != null)
+//      _prefs.setString("profile", jsonEncode(profile.toJson ()));
+//    else
+//      _prefs.remove("profile");
+//  }
 
   // 将情绪得分转化为表情图标
   static Icon getSentimentIcon(int score, double size)

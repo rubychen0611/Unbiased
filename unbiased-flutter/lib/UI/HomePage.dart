@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:unbiased/Common/Requests.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/UI/ArticlePage.dart';
@@ -71,25 +72,6 @@ class _HomePageState extends State<HomePage> {
             )
         )
       );
-  }
-
-  Widget buildTextField() {
-    // theme设置局部主题
-    return Theme(
-      data: new ThemeData(primaryColor: Colors.grey),
-      child: new TextField(
-        cursorColor: Colors.grey, // 光标颜色
-        // 默认设置
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
-            border: InputBorder.none,
-            icon: Icon(Icons.search),
-            hintText: "搜索 flutter 组件",
-            hintStyle: new TextStyle(
-                fontSize: 14, color: Color.fromARGB(50, 0, 0, 0))),
-        style: new TextStyle(fontSize: 14, color: Colors.black),
-      ),
-    );
   }
 
   // 刷新

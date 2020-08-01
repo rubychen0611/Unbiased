@@ -14,7 +14,7 @@ class IndexPage extends StatefulWidget {
 class _IndexState extends State<IndexPage> {
   int _selectedIndex = 0;
 
-  final pages = [HomePage(), MinePage()];
+  final pages = [HomePage(),MinePage()];
 
   @override
   Widget build(BuildContext context) {
