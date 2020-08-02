@@ -1,10 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:unbiased/UI/SearchResultsPage.dart';
-
-import 'ArticlePage.dart';
 
 typedef SearchItemCall = void Function(String item);
 
@@ -68,7 +64,6 @@ class SearchBarDelegate extends SearchDelegate<String> {
       primaryTextTheme: theme.primaryTextTheme.apply( bodyColor: Colors.white, displayColor: Colors.white,decorationColor:Colors.white)
     );
   }
-
 }
 
 class SearchContentView extends StatelessWidget {
