@@ -21,7 +21,7 @@ class ArticlePage extends StatefulWidget {
 
 
 class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin {
-  List<dynamic> future_favoriteIds;
+  //List<dynamic> future_favoriteIds;
   bool _ifFavorite = false;
   @override
   void initState(){
@@ -35,6 +35,7 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
       _ifFavorite = value;
     });
   }
+
   void handleFavoriteChanges(bool isLogin) async
   {
     if(!isLogin)
@@ -98,7 +99,6 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
               padding: const EdgeInsets.symmetric(
               horizontal: 10.0, vertical: 5.0),
               child: new Text(
-//                '\'Once Upon a Virus\': China mocks U.S. coronavirus response in Lego-like animation',
                 widget.article.title,
                 style: new TextStyle(
                   fontWeight: FontWeight.bold,

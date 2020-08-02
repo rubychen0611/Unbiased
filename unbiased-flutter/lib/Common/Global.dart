@@ -16,13 +16,13 @@ class Global {
   // 将情绪得分转化为表情图标
   static Icon getSentimentIcon(int score, double size)
   {
-    if (0 <= score && score < 20)
+    if (0 <= score && score < 40)
       return Icon(Icons.sentiment_very_dissatisfied, color: Colors.red, size:size,);
-    else if (20 <= score && score < 40 )
+    else if (40 <= score && score < 45 )
       return Icon(Icons.sentiment_dissatisfied, color: Colors.orange, size:size,);
-    else if (40 <= score && score < 60)
+    else if (45 <= score && score < 55)
       return Icon(Icons.sentiment_neutral, color: Colors.amberAccent, size:size,);
-    else if (60 <= score && score <80)
+    else if (55 <= score && score < 60)
       return Icon(Icons.sentiment_satisfied,  color: Colors.lime, size:size,);
     else
       return Icon(Icons.sentiment_very_satisfied, color: Colors.green, size:size,);

@@ -4,7 +4,6 @@ A Multi-perspective Covid-19-related International News App
 ## Video Demo
 https://youtu.be/oCnLdIDYHfg
 
-<<<<<<< HEAD
 ## Overview
 <img src="https://github.com/rubychen0611/Unbiased/blob/master/images/overview.png" width = "600"/>
 
