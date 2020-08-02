@@ -1,5 +1,6 @@
 
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:unbiased/Common/State.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 
 
@@ -27,6 +28,34 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
     List<LCObject> article_objs = await query_article.find();
     for (LCObject article_obj in article_objs)
     {
+      print('Start to get comments');
+      // 获取文章评论
+      List<dynamic> comment_ids = article_obj['Comments'];
+//      print("Comment id");
+//      print(comment_ids);
+      List<Comment> comments = [];
+      if (comment_ids != null)
+      {
+        LCQuery<LCObject> query_comment = LCQuery('Comment');
+        query_comment.include('User.username');
+        query_comment.whereContainedIn('objectId', comment_ids);
+        List<LCObject> comment_objs = await query_comment.find();
+        print("Comment obj");
+        print(comment_objs);
+        for (LCObject comment_obj in comment_objs)
+        {
+          comments.add(Comment(
+              content: comment_obj['Content'],
+              date: comment_obj.createdAt,
+              username: comment_obj['User']['username']
+          ));
+        }
+      }
+    if (comments.length > 0){
+      print(comments);
+     print(comments[0].username);
+    }
+
       articles.add(Article(
           objectId: article_obj.objectId,
           title: article_obj['Title'],
@@ -38,7 +67,8 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
           summary: article_obj['Summary'],
           img_url: article_obj['ImageURL'],
           score: article_obj['SentimentScore'],
-          link_url: article_obj['Link']
+          link_url: article_obj['Link'],
+          comments: comments
       ));
     }
 
@@ -82,7 +112,6 @@ Future<List<Article>> getFavorites() async
     ));
   }
   return favorites;
-
 }
 
 Future <bool> getIfFavorite(String articleId) async     // 判断是否已收藏（用于显示星星图标）
@@ -97,7 +126,7 @@ Future <bool> getIfFavorite(String articleId) async     // 判断是否已收藏
 }
 
 
-Future<bool> addArticleToFavorites(String articleId) async    // 添加/移除收藏
+Future <bool> addArticleToFavorites(String articleId) async    // 添加/移除收藏
 {
   LCUser user_obj = await LCUser.getCurrent();
   List<dynamic> favoriteIds = user_obj['Favorites'];
@@ -119,9 +148,10 @@ Future<bool> addArticleToFavorites(String articleId) async    // 添加/移除�
   }
 }
 
+
 Future<List<NewsGroup>> getSearchResults(String keywords) async
 {
-  List<NewsGroup> news_groups = new List<NewsGroup>();   // 存储新闻组详细信
+  List<NewsGroup> news_groups = new List<NewsGroup>(); // 存储新闻组详细信
   // 获取新闻组
   LCQuery<LCObject> query = LCQuery('NewsGroup');
   query.whereContains('Title', keywords);
@@ -137,8 +167,7 @@ Future<List<NewsGroup>> getSearchResults(String keywords) async
     query_article.include('Media.Logo.url');
     query_article.whereContainedIn('objectId', article_ids);
     List<LCObject> article_objs = await query_article.find();
-    for (LCObject article_obj in article_objs)
-    {
+    for (LCObject article_obj in article_objs) {
       articles.add(Article(
           objectId: article_obj.objectId,
           title: article_obj['Title'],
@@ -155,11 +184,38 @@ Future<List<NewsGroup>> getSearchResults(String keywords) async
     }
 
     news_groups.add(NewsGroup(
-        rank: i + 1,
-        group_title: group_objs[i]['Title'],
-        img_url: group_objs[i]['ImageURL'],
-        articles: articles,
+      rank: i + 1,
+      group_title: group_objs[i]['Title'],
+      img_url: group_objs[i]['ImageURL'],
+      articles: articles,
     ));
   }
   return news_groups;
+}
+
+
+// 添加评论
+Future <bool> addCommentToArticle(dynamic articleId, String content) async
+{
+  // 添加评论需要更新两个表 Comment 和 Article
+  LCUser user_obj = await LCUser.getCurrent();
+  // 查询文章的评论表
+  LCQuery<LCObject> query_article = LCQuery('Article');
+  query_article.whereEqualTo('objectId', articleId);
+  LCObject article_obj = await query_article.first();
+  List<dynamic> commentIds = article_obj['Comments'];
+
+  LCObject comment_obj = LCObject('Comment');
+  comment_obj['Content'] = content;
+  comment_obj['User'] = user_obj;
+
+  await comment_obj.save();
+
+  commentIds.add(comment_obj.objectId);
+  article_obj['Comments'] = commentIds;
+
+  await article_obj.save();
+
+  return true;
+
 }
