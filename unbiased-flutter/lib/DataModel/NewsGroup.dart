@@ -32,9 +32,6 @@ class NewsGroup{
   List<Article> articles;           // 文章列表
   String img_url;           // 代表图片url
   bool is_expanded;       // 面板是否展开
-  NewsGroup({this.rank, this.group_title, this.img_url, this.articles})
-  {
-    this.is_expanded = false;     // 默认不展开
-  }
+  NewsGroup({this.rank, this.group_title, this.img_url, this.articles, this.is_expanded:false}){}
 }
 

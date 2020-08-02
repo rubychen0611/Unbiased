@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:unbiased/UI/HomePage.dart';
 import 'package:unbiased/UI/MinePage.dart';
 import 'package:unbiased/Common/MyIcons.dart';
+import 'package:unbiased/UI/SearchDelegate.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -33,7 +34,8 @@ class _IndexState extends State<IndexPage> {
           new IconButton(
             icon: new Icon(Icons.search),
             onPressed: () {
-            // TODO： 搜索
+            // 搜索
+              showSearch(context: context,delegate: SearchBarDelegate());
             }
         ),
      ]

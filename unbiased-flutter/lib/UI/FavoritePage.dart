@@ -12,7 +12,7 @@ class FavoritePage extends StatefulWidget {
   _FavoritePageState createState() => new _FavoritePageState();
 }
 
-class _FavoritePageState extends State<FavoritePage> with TickerProviderStateMixin {
+class _FavoritePageState extends State<FavoritePage> {
 
   Future<List<Article>> future_favorites;
   @override
@@ -26,15 +26,6 @@ class _FavoritePageState extends State<FavoritePage> with TickerProviderStateMix
       future_favorites = getFavorites();
     });
   }
-//  @override
-//  void deactivate() {
-//    var bool = ModalRoute.of(context).isCurrent;
-//
-//    if (bool) {
-//      future_favorites = getFavorites();
-//    }
-//
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +91,8 @@ class _FavoritePageState extends State<FavoritePage> with TickerProviderStateMix
           int index) => new Divider(),
     );
     }
+
+  //bool get wantKeepAlive => true;
 
 
 }

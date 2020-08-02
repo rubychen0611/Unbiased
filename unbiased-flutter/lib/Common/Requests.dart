@@ -1,6 +1,4 @@
 
-import 'dart:convert';
-
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 
@@ -15,7 +13,6 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
   query.limit(15);          // 最多显示前15条
   if (loadMore==true)
     query.skip(cur_count);
-  //query.include('Image.url');
   List<LCObject> group_objs = await query.find();
 
   //获取各新闻组详细信息
@@ -120,4 +117,49 @@ Future<bool> addArticleToFavorites(String articleId) async    // 添加/移除�
     await user_obj.save();
     return false;
   }
+}
+
+Future<List<NewsGroup>> getSearchResults(String keywords) async
+{
+  List<NewsGroup> news_groups = new List<NewsGroup>();   // 存储新闻组详细信
+  // 获取新闻组
+  LCQuery<LCObject> query = LCQuery('NewsGroup');
+  query.whereContains('Title', keywords);
+  List<LCObject> group_objs = await query.find();
+
+  //获取各新闻组详细信息
+  for (int i = 0; i < group_objs.length; i++) {
+    List<dynamic> article_ids = group_objs[i]['Articles'];
+    List<Article> articles = [];
+    // 获取组内各文章详细信息
+    LCQuery<LCObject> query_article = LCQuery('Article');
+    query_article.include('Media.Name');
+    query_article.include('Media.Logo.url');
+    query_article.whereContainedIn('objectId', article_ids);
+    List<LCObject> article_objs = await query_article.find();
+    for (LCObject article_obj in article_objs)
+    {
+      articles.add(Article(
+          objectId: article_obj.objectId,
+          title: article_obj['Title'],
+          media: Media(
+            name: article_obj['Media']['Name'],
+            logo_url: article_obj['Media']['Logo']['url'],
+          ),
+          date: article_obj['Date'],
+          summary: article_obj['Summary'],
+          img_url: article_obj['ImageURL'],
+          score: article_obj['SentimentScore'],
+          link_url: article_obj['Link']
+      ));
+    }
+
+    news_groups.add(NewsGroup(
+        rank: i + 1,
+        group_title: group_objs[i]['Title'],
+        img_url: group_objs[i]['ImageURL'],
+        articles: articles,
+    ));
+  }
+  return news_groups;
 }
