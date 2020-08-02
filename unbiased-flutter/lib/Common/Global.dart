@@ -30,34 +30,27 @@ class Global {
 
 
   // 将文章发表时间转化为与当前时间差字符串
-  static String getArticleTime(DateTime old)
-  {
+  static String getArticleTime(DateTime old) {
     String time_str;
     DateTime now = new DateTime.now();
     var difference = now.difference(old);
-    if(difference.inDays > 1)
-    {
+    if (difference.inDays > 1) {
       time_str = (difference.inDays).toString() + ' days ago';
     }
-    else if(difference.inDays == 1)
-    {
+    else if (difference.inDays == 1) {
       time_str = '1 day ago';
     }
-    else if(difference.inHours > 1 && difference.inHours < 24)
-    {
+    else if (difference.inHours > 1 && difference.inHours < 24) {
       time_str = (difference.inHours).toString() + ' hrs ago';
     }
-    else if(difference.inHours == 1)
-    {
+    else if (difference.inHours == 1) {
       time_str = '1 hour ago';
     }
-    else if(difference.inMinutes > 5 && difference.inMinutes < 60)
-    {
+    else if (difference.inMinutes > 5 && difference.inMinutes < 60) {
       time_str = (difference.inMinutes).toString() + ' mins ago';
     }
-    else if(difference.inMinutes <= 5)
-    {
-      time_str =  'now';
+    else if (difference.inMinutes <= 5) {
+      time_str = 'now';
     }
     return time_str;
   }

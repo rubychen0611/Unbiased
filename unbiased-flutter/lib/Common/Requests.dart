@@ -28,34 +28,6 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
     List<LCObject> article_objs = await query_article.find();
     for (LCObject article_obj in article_objs)
     {
-      print('Start to get comments');
-      // 获取文章评论
-      List<dynamic> comment_ids = article_obj['Comments'];
-//      print("Comment id");
-//      print(comment_ids);
-      List<Comment> comments = [];
-      if (comment_ids != null)
-      {
-        LCQuery<LCObject> query_comment = LCQuery('Comment');
-        query_comment.include('User.username');
-        query_comment.whereContainedIn('objectId', comment_ids);
-        List<LCObject> comment_objs = await query_comment.find();
-        print("Comment obj");
-        print(comment_objs);
-        for (LCObject comment_obj in comment_objs)
-        {
-          comments.add(Comment(
-              content: comment_obj['Content'],
-              date: comment_obj.createdAt,
-              username: comment_obj['User']['username']
-          ));
-        }
-      }
-    if (comments.length > 0){
-      print(comments);
-     print(comments[0].username);
-    }
-
       articles.add(Article(
           objectId: article_obj.objectId,
           title: article_obj['Title'],
@@ -68,7 +40,7 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
           img_url: article_obj['ImageURL'],
           score: article_obj['SentimentScore'],
           link_url: article_obj['Link'],
-          comments: comments
+         // comments: comments
       ));
     }
 
@@ -193,9 +165,41 @@ Future<List<NewsGroup>> getSearchResults(String keywords) async
   return news_groups;
 }
 
+// 获取评论
+Future <List<Comment>> getComments(String articleId) async
+{
+  // 获取文章信息
+  LCQuery<LCObject> query_article = LCQuery('Article');
+  query_article.include('Media.Name');
+  query_article.include('Media.Logo.url');
+  query_article.whereEqualTo('objectId', articleId);
+  LCObject article_obj = await query_article.first();
+
+  print('Start to get comments');
+  // 获取文章评论
+  List<dynamic> comment_ids = article_obj['Comments'];
+//      print("Comment id");
+//      print(comment_ids);
+  List<Comment> comments = [];
+  if (comment_ids != null) {
+    LCQuery<LCObject> query_comment = LCQuery('Comment');
+    query_comment.include('User.username');
+    query_comment.whereContainedIn('objectId', comment_ids);
+    List<LCObject> comment_objs = await query_comment.find();
+    print("Comment obj");
+    print(comment_objs);
+    for (LCObject comment_obj in comment_objs) {
+      comments.add(Comment(
+          content: comment_obj['Content'],
+          date: comment_obj.createdAt,
+          username: comment_obj['User']['username']));
+    }
+  }
+  return comments;
+}
 
 // 添加评论
-Future <bool> addCommentToArticle(dynamic articleId, String content) async
+Future <bool> addCommentToArticle(String articleId, String content) async
 {
   // 添加评论需要更新两个表 Comment 和 Article
   LCUser user_obj = await LCUser.getCurrent();

@@ -10,6 +10,7 @@ import 'package:unbiased/Common/State.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:intl/intl.dart';
 
 class ArticlePage extends StatefulWidget {
   ArticlePage({
@@ -26,11 +27,23 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin {
   bool _ifFavorite = false;
+  Future<List<Comment>> future_commments;
 
   @override
   void initState() {
     super.initState();
     initFavoriteState();
+    initCommentState();
+  }
+
+  Future initCommentState() async {
+    future_commments = getComments(widget.article.objectId);
+  }
+
+  void _update() {
+    setState(() {
+      future_commments = getComments(widget.article.objectId);
+    });
   }
 
   Future initFavoriteState() async {
@@ -240,23 +253,18 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                 child: new Row(
                   children: <Widget>[
                     Expanded(
-                      child: new ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: commentsList.length,
-                        itemBuilder: (context, index) {
-                          return new ListTile(
-                            title: new Text(commentsList[index].content),
-                            subtitle: new Text(
-                                commentsList[index].username +
-                                '   -   ' + commentsList[index].date.toString()),
-                            leading: Icon(
-                              Icons.account_circle,
-                              size: 40,
-                            ),
-                          );
-                        },
-                      ),
-
+                      child: FutureBuilder<List<Comment>>(
+                          future: future_commments,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return buildCommentsList(snapshot.data); // 显示评论
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                  child: Text("${snapshot.error}")); // 显示错误
+                            }
+                            return Center(
+                                child: CircularProgressIndicator()); // 显示进度条
+                          }),
                     )
                   ],
                 )),
@@ -277,15 +285,15 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                       ),
                       autofocus: false,
                       textInputAction: TextInputAction.send,
-                      onSubmitted: (val) async{
+                      onSubmitted: (val) async {
                         print('输入了${val}');
                         try {
-                          bool succ = await addCommentToArticle(widget.article.objectId, val);
+                          bool succ = await addCommentToArticle(widget.article
+                              .objectId, val);
                         }
                         catch (e) {
                           Fluttertoast.showToast(msg: 'Comment Error.');
                         }
-
                         _userEtController.text = "";
                         Fluttertoast.showToast(
                           msg: 'Successfully make comment.',
@@ -293,7 +301,7 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                           textColor: Colors.deepOrange,
                           gravity: ToastGravity.BOTTOM,
                         );
-                        return EasyRefresh;
+                        _update();
                       },
                     ),
                     width: 350,
@@ -301,6 +309,27 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                 ])),
           ],
         )
+    );
+  }
+
+  Widget buildCommentsList(List<Comment> comments) {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      //禁用滑动事件
+      shrinkWrap: true,
+      itemCount: comments.length,
+      itemBuilder: (context, index) {
+        return new ListTile(
+          title: new Text(comments[index].content),
+          subtitle: new Text(comments[index].username +
+              '   -   ' +
+              DateFormat("yyyy-MM-dd HH:mm:ss").format(comments[index].date)),
+          leading: Icon(
+            Icons.account_circle,
+            size: 40,
+          ),
+        );
+      },
     );
   }
 }
@@ -367,15 +396,6 @@ class WebViewPageState extends State<WebViewPage> {
               : Container(),
         ],
       ),
-//      body: SafeArea(
-//        child: WebView(
-//          initialUrl: url,
-//          javascriptMode: JavascriptMode.unrestricted,
-//          onWebViewCreated: (WebViewController controller) {
-//            _controller = controller;
-//          },
-//        ),
-//      ),
     );
   }
 
