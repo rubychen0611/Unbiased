@@ -16,8 +16,8 @@ class Comment
 {
   String content;     // 评论内容
   DateTime date;      // 评论时间
-  LCUser user;    // 评论人
-  Comment({this.content, this.date, this.user}){}
+  LCUser username;    // 评论人
+  Comment({this.content, this.date, this.username}){}
 
 }
 

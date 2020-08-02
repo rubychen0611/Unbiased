@@ -1,6 +1,8 @@
 // 新闻详情页
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/Common/Requests.dart';
@@ -69,7 +71,13 @@ class _ArticlePageState extends State<ArticlePage>
   Widget build(BuildContext context) {
     List<Comment> commentsList = widget.article.comments;
     print("article page: ");
-    print(commentsList);
+    print(commentsList[0].date);
+//    print(Global.getArticleTime(commentsList[0].date));
+
+    print(commentsList[0].username);
+
+
+    TextEditingController _userEtController = TextEditingController();
     return Scaffold(
         appBar: new AppBar(
             leading: Builder(
@@ -236,10 +244,14 @@ class _ArticlePageState extends State<ArticlePage>
                     Expanded(
                       child: new ListView.builder(
                         shrinkWrap: true,
-                        itemCount: 2,
+                        itemCount: commentsList.length,
                         itemBuilder: (context, index) {
                           return new ListTile(
-                            title: new Text('${commentsList[index].content}'),
+                            title: new Text(commentsList[index].content),
+                            subtitle: new Text(
+                                'A user' +
+                                '   -   ' +
+                                Global.getArticleTime(widget.article.date)),
                             leading: Icon(
                               Icons.account_circle,
                               size: 40,
@@ -257,6 +269,7 @@ class _ArticlePageState extends State<ArticlePage>
                 child: new Row(children: <Widget>[
                   new Container(
                     child: TextField(
+                      controller: _userEtController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Type a new comment...',
@@ -266,6 +279,41 @@ class _ArticlePageState extends State<ArticlePage>
                         ),
                       ),
                       autofocus: false,
+                      textInputAction: TextInputAction.send,
+                      onSubmitted: (val) {
+                        print('输入了${val}');
+                        try {
+                          bool succ = addCommentToArticle(widget.article.objectId, ${val});
+                          if (succ) {
+                            Fluttertoast.showToast(msg: 'Successfully added to favorites.');
+                            setState(()
+
+
+
+
+
+
+
+
+
+                            {
+                              _ifFavorite = true;
+                            });
+                          }
+                        }
+                        catch (e) {
+                          Fluttertoast.showToast(msg: 'Comment Error.');
+                        }
+
+                        _userEtController.text = "";
+                        Fluttertoast.showToast(
+                          msg: 'Successfully make comment.',
+                          toastLength: Toast.LENGTH_LONG,
+                          textColor: Colors.deepOrange,
+                          gravity: ToastGravity.BOTTOM,
+                        );
+                        return EasyRefresh;
+                      },
                     ),
                     width: 350,
                   ),

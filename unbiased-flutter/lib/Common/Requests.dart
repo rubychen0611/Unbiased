@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:unbiased/Common/State.dart';
@@ -31,18 +32,34 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
     List<LCObject> article_objs = await query_article.find();
     for (LCObject article_obj in article_objs)
     {
-      List<Comment> comments;
-      for (LCObject comment in article_obj['Comments'])
+
+      print('Start to get comments');
+      // 获取文章评论
+      List<dynamic> comment_ids = article_obj['Comments'];
+//      print("Comment id");
+//      print(comment_ids);
+      List<Comment> comments = [];
+      if (comment_ids != null)
       {
-//        // 获取文章评论
-//        comments.add(Comment(
-//            content: comment['Content'],
-//            date: comment['createdAt'],
-//            user: LCUser(
-//
-//            )
-//        ));
+        LCQuery<LCObject> query_comment = LCQuery('Comment');
+        query_comment.include('User');
+        query_comment.whereContainedIn('objectId', comment_ids);
+        List<LCObject> comment_objs = await query_comment.find();
+        print("Comment obj");
+        print(comment_objs);
+        for (LCObject comment_obj in comment_objs)
+        {
+          comments.add(Comment(
+              content: comment_obj['Content'],
+              date: comment_obj['createdAt'],
+              username:  comment_obj['User']
+          ));
+        }
       }
+    if (comments.length > 0){
+      print(comments);
+      print(comments[0].username);
+    }
 
       articles.add(Article(
           objectId: article_obj.objectId,
@@ -100,7 +117,6 @@ Future<List<Article>> getFavorites() async
     ));
   }
   return favorites;
-
 }
 
 Future <bool> getIfFavorite(String articleId) async     // 判断是否已收藏（用于显示星星图标）
@@ -115,7 +131,7 @@ Future <bool> getIfFavorite(String articleId) async     // 判断是否已收藏
 }
 
 
-Future<bool> addArticleToFavorites(String articleId) async    // 添加/移除收藏
+Future <bool> addArticleToFavorites(String articleId) async    // 添加/移除收藏
 {
   LCUser user_obj = await LCUser.getCurrent();
   List<dynamic> favoriteIds = user_obj['Favorites'];
@@ -135,4 +151,30 @@ Future<bool> addArticleToFavorites(String articleId) async    // 添加/移除�
     await user_obj.save();
     return false;
   }
+}
+
+// 添加评论
+Future <bool> addCommentToArticle(dynamic articleId, String content) async
+{
+  // 添加评论需要更新两个表 Comment 和 Article
+  LCUser user_obj = await LCUser.getCurrent();
+  // 查询文章的评论表
+  LCQuery<LCObject> query_article = LCQuery('Article');
+  query_article.whereEqualTo('objectId', articleId);
+  LCObject article_obj = await query_article.first();
+  List<dynamic> commentIds = article_obj['Comments'];
+
+  LCObject comment_obj = LCObject('Comment');
+  comment_obj['Content'] = content;
+  comment_obj['User'] = user_obj;
+
+  commentIds.add(comment_obj.objectId);
+  article_obj['Comments'] = commentIds;
+
+  await comment_obj.save();
+  await article_obj.save();
+
+  return true;
+
+
 }
