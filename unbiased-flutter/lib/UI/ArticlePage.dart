@@ -1,23 +1,71 @@
 // 新闻详情页
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 import 'package:unbiased/Common/Global.dart';
+import 'package:unbiased/Common/Requests.dart';
+import 'package:unbiased/Common/State.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class ArticlePage extends StatelessWidget {
+class ArticlePage extends StatefulWidget {
   ArticlePage({
     Key key,
     @required this.article, // 接收一个Article参数
   }) : super(key: key);
+  @override
+  _ArticlePageState createState() => new _ArticlePageState();
   final Article article;
+}
 
+
+class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin {
+  List<dynamic> future_favoriteIds;
+  bool _ifFavorite = false;
+  @override
+  void initState(){
+    super.initState();
+    initFavoriteState();
+
+  }
+  Future initFavoriteState() async{
+    bool value = await getIfFavorite(widget.article.objectId);
+    setState(() {
+      _ifFavorite = value;
+    });
+  }
+  void handleFavoriteChanges(bool isLogin) async
+  {
+    if(!isLogin)
+      {
+        Fluttertoast.showToast(msg: 'Please sign in/up first.');
+        return;
+      }
+
+    try {
+      bool succ = await addArticleToFavorites(widget.article.objectId);
+      if(succ) {
+        Fluttertoast.showToast(msg: 'Successfully added to favorites.');
+        setState(() {
+          _ifFavorite = true;
+        });
+      }
+      else{
+        Fluttertoast.showToast(msg:'Removed from favorites.');
+        setState(() {
+          _ifFavorite = false;
+        });
+      }
+    } catch(e)
+    {
+      Fluttertoast.showToast(msg:'Error.');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
-          title: new Text(''),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -28,23 +76,30 @@ class ArticlePage extends StatelessWidget {
               );
             },
           ),
+            actions: <Widget>[      //增加收藏按钮
+              Consumer<UserModel>(
+                  builder: (BuildContext context, UserModel userModel, Widget child){
+                  return new FavoriteButton(ifFavorite: _ifFavorite, isLogin: userModel.isLogin(), onChanged: handleFavoriteChanges);
+                  }
+              )
+              ]
         ),
-        body: new ListView(
-          children: <Widget>[
-            article.img_url!=null? CachedNetworkImage( // 新闻图片（可缓存）
+              body: new ListView(
+              children: <Widget>[
+              widget.article.img_url!=null? CachedNetworkImage( // 新闻图片（可缓存）
               placeholder: (context, url) =>
-                  CircularProgressIndicator(),
-              imageUrl: article.img_url,
+              CircularProgressIndicator(),
+              imageUrl: widget.article.img_url,
               errorWidget: (context, url, error) => Icon(Icons.error),
               height: 180.0,
               fit: BoxFit.cover,
-            ) : Container(),
-            Container(
+              ) : Container(),
+              Container(
               padding: const EdgeInsets.symmetric(
-                  horizontal: 10.0, vertical: 5.0),
+              horizontal: 10.0, vertical: 5.0),
               child: new Text(
 //                '\'Once Upon a Virus\': China mocks U.S. coronavirus response in Lego-like animation',
-                article.title,
+                widget.article.title,
                 style: new TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
@@ -64,7 +119,7 @@ class ArticlePage extends StatelessWidget {
                           children: <Widget>[
                             CachedNetworkImage(
                               placeholder: (context, url) => CircularProgressIndicator(),
-                              imageUrl: article.media.logo_url,
+                              imageUrl: widget.article.media.logo_url,
                               height: 32,
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -75,9 +130,9 @@ class ArticlePage extends StatelessWidget {
                       flex: 7,
                       child: new Container(
                         child: new Text(
-                          article.media.name +
+                          widget.article.media.name +
                               ' · ' +
-                              Global.getArticleTime(article.date),
+                              Global.getArticleTime(widget.article.date),
 //                    'Quartz' + ' · ' + '5 hrs',
                           style: new TextStyle(fontSize: 18),
                         ),
@@ -87,7 +142,7 @@ class ArticlePage extends StatelessWidget {
                       child: new Container(
                         alignment: Alignment.topRight,
                         child:
-                          Global.getSentimentIcon(article.score, 40),
+                          Global.getSentimentIcon(widget.article.score, 40),
                       ))
                 ],
               ),
@@ -103,7 +158,7 @@ class ArticlePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                   horizontal: 20.0, vertical: 10.0),
               child: new Text(
-                article.summary,
+                widget.article.summary,
                 style: new TextStyle(fontSize: 18.0, height: 1.5),
               ),
             ),
@@ -130,11 +185,11 @@ class ArticlePage extends StatelessWidget {
                     color: Colors.teal,
                     onPressed:(){
                       // WebView跳转
-                      print(article.link_url);
+                      print(widget.article.link_url);
                       Navigator.of(context)
                           .push(new MaterialPageRoute(builder: (_) {
                         return new WebViewPage(
-                          url: article.link_url,
+                          url: widget.article.link_url,
                         );
                       }));
 //                      Navigator.push(context, MaterialPageRoute(builder: (cx) => WebViewPage(article.link_url)));
@@ -255,4 +310,22 @@ class WebViewPageState extends State<WebViewPage> {
     );
   }
 
+}
+
+class FavoriteButton extends StatelessWidget {
+  FavoriteButton({Key key, this.ifFavorite: false, this.isLogin, this.onChanged}) : super(key: key);
+  final bool ifFavorite;
+  final bool isLogin;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return new IconButton(
+        icon: new Icon(isLogin && ifFavorite ? Icons.star: Icons.star_border, size: 32,),
+        onPressed: () async {
+          // 添加到收藏夹
+          onChanged(isLogin);
+        }
+    );
+  }
 }

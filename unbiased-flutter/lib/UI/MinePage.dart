@@ -1,6 +1,8 @@
 /* 我的页面 */
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:unbiased/Common/MyIcons.dart';
+import 'package:unbiased/UI/FavoritePage.dart';
 import 'package:unbiased/UI/LoginPage.dart';
 import 'package:provider/provider.dart';
 import 'package:unbiased/Common/State.dart';
@@ -12,7 +14,7 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  Widget _cell(int row, IconData iconData, String title, bool ifJump, bool isShowBottomLine) {
+  Widget _cell(int row, IconData iconData, String title, bool ifJump, bool isShowBottomLine){
     return Consumer<UserModel>(
         builder: (BuildContext context, UserModel userModel, Widget child) {
         return GestureDetector(
@@ -25,7 +27,17 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
               print("$row -- $title");
               break;
             case 2:
-              print("$row -- $title");
+              if (userModel.isLogin()) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                      return FavoritePage();
+                    }
+                    ));
+              }
+              else
+              {
+                Fluttertoast.showToast(msg:'Please sign in/up first.');
+              }
               break;
             case 3:
               print("$row -- $title");
@@ -34,7 +46,7 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
               print("$row -- $title");
               break;
             case 5:
-              if (userModel.isLogin) {
+              if (userModel.isLogin()) {
                 showDialog(
                   context: context,
                   builder: (ctx) {
@@ -50,7 +62,8 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
                           child: Text("Yes"),
                           onPressed: () {
                             //该赋值语句会触发MaterialApp rebuild
-                            userModel.user = null;
+                            //userModel.user = null;
+                            userModel.logOut();
                             Navigator.pop(context);
                           },
                         ),
@@ -101,6 +114,7 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
     );
   }
 
+
   Widget _bottomLine(bool isShowBottomLine) {
     if (isShowBottomLine) {
       return new Container(
@@ -124,10 +138,10 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
 
   Widget _topView() {
     return Consumer<UserModel>(
-        builder: (BuildContext context, UserModel value, Widget child) {
+        builder: (BuildContext context, UserModel userModel, Widget child) {
         return GestureDetector(
         onTap: () {
-          if (!value.isLogin) {
+          if (!userModel.isLogin()) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) {
                   return LoginPage();
@@ -163,9 +177,9 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
                       child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          new Text(value.isLogin
-                              ? value.user.username
-                              : "Sign in", style: TextStyle(color: Color(0xFF777777), fontSize: 22.0), textAlign: TextAlign.left),
+                          new Text(userModel.isLogin()
+                              ? userModel.currentUser['username']
+                              : "Sign in/up", style: TextStyle(color: Color(0xFF777777), fontSize: 22.0), textAlign: TextAlign.left),
                         ],
                       ),
                     ),
@@ -199,7 +213,7 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
             } else if (index == 1) {
               return _spaceView();
             }else if (index == 2) {
-              return _cell(index, Icons.star, "My favorite", true, true);
+              return _cell(index, Icons.star, "My favorites", true, true);
             } else if (index == 3) {
               return _cell(index, Icons.help, "Help", true, true);
             }  else if (index == 4) {

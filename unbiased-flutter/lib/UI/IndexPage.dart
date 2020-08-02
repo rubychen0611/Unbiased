@@ -14,7 +14,7 @@ class IndexPage extends StatefulWidget {
 class _IndexState extends State<IndexPage> {
   int _selectedIndex = 0;
 
-  final pages = [HomePage(), MinePage()];
+  final pages = [HomePage(),MinePage()];
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,14 @@ class _IndexState extends State<IndexPage> {
             ]
         ),
         centerTitle: true,
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.search),
+            onPressed: () {
+            // TODO： 搜索
+            }
+        ),
+     ]
         ),
         bottomNavigationBar: BottomNavigationBar( // 底部导航
         items: <BottomNavigationBarItem>[

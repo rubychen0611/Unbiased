@@ -4,30 +4,29 @@ A Multi-perspective Covid-19-related International News App
 ## Video Demo
 https://youtu.be/oCnLdIDYHfg
 
-## UI
-
-<img src="https://github.com/rubychen0611/Unbiased/blob/master/images/overview.png" width = "500"/>
-
+<<<<<<< HEAD
 ## Overview
+<img src="https://github.com/rubychen0611/Unbiased/blob/master/images/overview.png" width = "600"/>
 
-<img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E4%B8%BB%E9%A1%B5.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%96%B0%E9%97%BB%E9%A1%B5.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%B3%A8%E5%86%8C.png" width = "200"/>
+## UI
+<img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E4%B8%BB%E9%A1%B5.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E4%B8%BB%E9%A1%B5%E5%B1%95%E5%BC%80.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%96%B0%E9%97%BB%E9%A1%B5.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%88%91%E7%9A%84.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%B3%A8%E5%86%8C.png" width = "200"/>
 
 ## Final Design Document
 https://drive.google.com/file/d/1dr0EPRQCG4lW_C1QAvIUQ315qPz4xAGz/view?usp=sharing
 
 ## Directory Structure
 - /unbiased-backend
- - Analyzer.py
- - Cleaner.py
- - Cluster.py
- - Crawler.py
- - MySQLConnector.py
- - Uploader.py
- - main.py
- - media_list.py
+   - Analyzer.py
+   - Cleaner.py
+   - Cluster.py
+   - Crawler.py
+   - MySQLConnector.py
+   - Uploader.py
+   - main.py
+   - media_list.py
 - /unbiased-flutter:
- - /lib
-     - /Common
+   - /lib
+      - /Common
          - Global.dart
          - MyIcons.dart
          - State.dart
@@ -43,8 +42,8 @@ https://drive.google.com/file/d/1dr0EPRQCG4lW_C1QAvIUQ315qPz4xAGz/view?usp=shari
         - SignInPage.dart
         - SignUpPage.dart
         - SplashPage.dart
-    - main.dart
-    - …
+   - main.dart
+   - …
 
 ## Run
 ### Run App

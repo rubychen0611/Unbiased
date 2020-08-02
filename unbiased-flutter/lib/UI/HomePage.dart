@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:unbiased/Common/Requests.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:unbiased/Common/Global.dart';
 import 'package:unbiased/UI/ArticlePage.dart';
@@ -33,44 +34,44 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return EasyRefresh(    // 下拉刷新
-        refreshHeader: ClassicsHeader(//自定义下拉刷新效果
-          key:_headerKey,
-          bgColor:Colors.white,
-          textColor: Colors.blueGrey,
-          moreInfoColor: Colors.blueGrey,
-          refreshingText: 'loading...', //加载时显示的文字
-          refreshedText: 'refreshed',
-        ),
-        refreshFooter:ClassicsFooter( //自定义上拉加载效果
-          key:_footerKey,
-          bgColor:Colors.white,
-          textColor: Colors.blueGrey,
-          moreInfoColor: Colors.blueGrey,
-          showMore: true,
-          noMoreText: '',
-        ),
-      onRefresh: _refresh,
-      loadMore: _loadMore,
-      child:SingleChildScrollView(
-            child: Container(
-              child: FutureBuilder<List<NewsGroup>>(
-              future: future_news_group,
-              builder:(context, snapshot)
-              {
-                  if(snapshot.hasData)
-                  {
-                    return buildNewsGroupPanel(snapshot.data);
-                  }
-                  else if (snapshot.hasError)
-                  {
-                  return Center(child: Text("${snapshot.error}"));      // 显示错误
-                  }
-                  return Center(child:CircularProgressIndicator());// 显示进度条
-              }
+          refreshHeader: ClassicsHeader(//自定义下拉刷新效果
+            key:_headerKey,
+            bgColor:Colors.white,
+            textColor: Colors.blueGrey,
+            moreInfoColor: Colors.blueGrey,
+            refreshingText: 'loading...', //加载时显示的文字
+            refreshedText: 'refreshed',
           ),
-          )
-      )
-    );
+          refreshFooter:ClassicsFooter( //自定义上拉加载效果
+            key:_footerKey,
+            bgColor:Colors.white,
+            textColor: Colors.blueGrey,
+            moreInfoColor: Colors.blueGrey,
+            showMore: true,
+            noMoreText: '',
+          ),
+        onRefresh: _refresh,
+        loadMore: _loadMore,
+        child:SingleChildScrollView(
+              child: Container(
+                child: FutureBuilder<List<NewsGroup>>(
+                future: future_news_group,
+                builder:(context, snapshot)
+                {
+                    if(snapshot.hasData)
+                    {
+                      return buildNewsGroupPanel(snapshot.data);        // 显示新闻组
+                    }
+                    else if (snapshot.hasError)
+                    {
+                    return Center(child: Text("${snapshot.error}"));      // 显示错误
+                    }
+                    return Center(child:CircularProgressIndicator());// 显示进度条
+                }
+            ),
+            )
+        )
+      );
   }
 
   // 刷新
