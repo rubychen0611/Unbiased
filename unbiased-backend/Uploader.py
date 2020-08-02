@@ -20,7 +20,7 @@ class Uploader:
         cursor = self.connector.connect()
         sql = "SELECT articleIndex,groupIndex,title,publishDate,image,url,mediaObjId,sentimentScore,summary \
                 FROM news.article INNER JOIN news.media ON article.mediaIndex = media.index     \
-                where groupIndex REGEXP '%s'"  % self.date
+                where groupIndex is REGEXP '%s'"  % self.date
         try:
             cursor.execute(sql)
             articles = cursor.fetchall()
@@ -59,6 +59,7 @@ class Uploader:
                 article_obj_ids.append(article_obj.id)
             # upload group info
             rank_score = self.cal_group_rank_score(self.groups[groupIndex])
+            # print(groupIndex + '\t' + str(rank_score))
             # print(groupIndex, rank_score)
             NewsGroup = leancloud.Object.extend('NewsGroup')
             group_obj = NewsGroup()
@@ -73,11 +74,11 @@ class Uploader:
     def cal_group_rank_score(self, articles):
         article_num = len(articles)
         if article_num == 3:
-            num_score = 3
+            num_score = 2
         elif 4 <= article_num <= 8:
-            num_score = 10
+            num_score = 3
         else:
-            num_score = 5
+            num_score = 1
 
         senti_scores = []
         media_set = set()
@@ -90,15 +91,16 @@ class Uploader:
         elif media_num == 2:
             media_score = 1
         elif media_num <= 4:
-            media_score = 5
+            media_score = 2
         else:
-            media_score = 10
+            media_score = 3
 
         senti_diff = int(np.max(senti_scores) - np.min(senti_scores))
         return num_score + media_score + senti_diff
+        # return senti_diff
 
 
 
 
-# uploader = Uploader(date='20200709')
-# uploader.upload_new_groups()
+uploader = Uploader(date='20200725')
+uploader.upload_new_groups()

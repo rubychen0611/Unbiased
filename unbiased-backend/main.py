@@ -8,16 +8,18 @@ from Crawler import Crawler
 from Uploader import Uploader
 
 
+
 this_date = time.strftime("%Y%m%d", time.localtime())
 # 爬取新闻
 crawler = Crawler(this_date=this_date)
 crawler.crawl()
 
 # 聚类
-cluster = Cluster(date=this_date)
+cluster = Cluster(date='20200801')
 cluster.remove_useless_articles()
 cluster.load_articles()
 cluster.cluster()
+cluster.upload_groups_to_DB()
 
 # 情绪分析
 analyzer = Analyzer(date=this_date)

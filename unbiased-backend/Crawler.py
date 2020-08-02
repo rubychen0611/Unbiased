@@ -65,50 +65,53 @@ class Crawler:
 
     def crawl(self):
         '''
-        爬新的文章（上次抓取时间之后发布的），存储到本地csv表格中，日期时间命名
+        爬新的文章（上次抓取时间之后发布的）
         '''
         self.cursor = self.connector.connect()
-        cur_count = self.get_cur_count();
+        cur_count = self.get_cur_count()
         for media in media_list:
-            self.logger.info("Start crawl %s  ..." % (media['Name']))
-            media_website = newspaper.build(media['URL'],language='en', memoize_articles=True)
-            self.logger.info("Found %d articles" % (len(media_website.articles)))
-            for i, article in enumerate(media_website.articles):
-                print(i, article.url)
-                if not self.if_url_satisfied(media, article.url):   # 网址前缀必须符合给定分类网址
-                    continue
-                # print(article.url)
-                try:
-                    article.download()
-                    print("...download")
-                    article.parse()
-                    print("...parsed")
-                except:
-                    continue
+            urls = media['URL']
+            for idx, url in enumerate(urls):
+                self.logger.info("Start crawl %s - %d  ..." % (media['Name'], idx))
+                media_website = newspaper.build(url,language='en', memoize_articles=True)
+                sum = len(media_website.articles)
+                self.logger.info("Found %d articles" % sum )
+                for i, article in enumerate(media_website.articles):
+                    print(i, article.url)
+                    if not self.if_url_satisfied(media, article.url):   # 网址前缀必须符合给定分类网址
+                        continue
+                    # print(article.url)
+                    try:
+                        article.download()
+                        print("...download")
+                        article.parse()
+                        print("...parsed")
+                    except:
+                        continue
 
-                # 文章过老
-                if article.publish_date == None:
-                    article.publish_date = datetime.datetime.now()
+                    # 文章过老
+                    if article.publish_date == None:
+                        article.publish_date = datetime.datetime.now()
 
-                article.publish_date = article.publish_date.replace(tzinfo=pytz.utc)
-                if article.publish_date < self.last_date:
-                    continue
+                    article.publish_date = article.publish_date.replace(tzinfo=pytz.utc)
+                    if article.publish_date < self.last_date:
+                        continue
 
-                # 文章与疫情无关
-                if not (self.if_covid19_related(article.title) or self.if_covid19_related(article.text)):
-                    continue
+                    # 文章与疫情无关
+                    if not (self.if_covid19_related(article.title) or self.if_covid19_related(article.text)):
+                        continue
 
-                # 上传到MySQL数据库
-                # article.nlp()
+                    # 上传到MySQL数据库
+                    # article.nlp()
 
-                self.upload_article(cur_count, media['Index'], article)
-                self.logger.info("Successfuly download %dth article %s \n %s" % (i, article.url, article.title))
-                cur_count += 1
+                    self.upload_article(cur_count, media['Index'], article)
+                    self.logger.info("Successfuly download %d / %d th article %s \n %s" % (i, sum, article.url, article.title))
+                    cur_count += 1
 
         self.connector.disconnect()
 
     def upload_article(self, count, media_index, article):
-        self.cursor = self.connector.connect()
+        #self.cursor = self.connector.connect()
         idArticle = '%s%05d' % (self.today, count)
         title = self.preprocess_text(article.title)
         url = self.preprocess_text(article.url)
@@ -126,11 +129,11 @@ class Crawler:
         except MySQLdb._exceptions.OperationalError:
             self.connector.db.rollback()
             self.logger.info("Unable to upload article to DB!")
-        self.connector.disconnect()
+        # self.connector.disconnect()
 
 
     def get_cur_count(self):
-        self.cursor = self.connector.connect()
+        # self.cursor = self.connector.connect()
         sql = '''select MAX(articleIndex) 
                 from news.article 
               where articleIndex REGEXP '%s';''' % (self.today)
@@ -140,7 +143,7 @@ class Crawler:
         except:
             self.logger.info("Unable to get current count!")
         #print(max_idx)
-        self.connector.disconnect()
+        #self.connector.disconnect()
         if max_idx[0][0] is None:
             count = 0
         else:

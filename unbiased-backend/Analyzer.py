@@ -2,6 +2,10 @@ import logging
 
 from MySQLConnector import MySQLConnector
 from textblob import TextBlob
+from afinn import Afinn
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from newspaper.article import Article, ArticleDownloadState
 import numpy as np
 class Analyzer:
@@ -18,32 +22,22 @@ class Analyzer:
         self.logger.addHandler(ch)
         self.logger.info("Finished initialization.")
 
-    def get_sentiment_score(self,text):
-        paragraphs = text.split('\n')
-        scores = []
-        for para_text in paragraphs:
-            if len(para_text) == 0:
-                continue
-            para = TextBlob(para_text)
-            # print (para_text)
-            # print(len(sent_tokenize(para_text)))
-            scores.append(para.sentiment.polarity)
-        # print (scores)
-        sentences_num = len(scores)
-        scores.sort()
-        if sentences_num < 4:
-            max = np.max(scores)
-            min = np.min(scores)
-        else:
-            min = np.mean(scores[:int(0.25 * sentences_num)])
-            max = np.mean(scores[int(0.75 * sentences_num):])
-        if max > abs(min):
-            final_score = max
-        else:
-            final_score = min
+    def get_sentiment_score(self,title, text):
 
-        final_score = int(round((final_score + 1) * 50))
+        sent_analyzer = SentimentIntensityAnalyzer()
+        title_score = sent_analyzer.polarity_scores(title)['compound']
+        title_score = int(round((title_score + 1) * 10))
+        sents = sent_tokenize(text)
+        scores = []
+        for sent in sents:
+            if(len(word_tokenize(sent)) > 1):       # 句子中单词大于1个
+                score = sent_analyzer.polarity_scores(sent)['compound']
+                scores.append(score)
+        text_score = np.mean(scores)
+        text_score = int(round((text_score + 1) * 40))
+        final_score = title_score + text_score
         return final_score
+
 
     def preprocess_text(self, text):
         text = text.replace("'", "''")
@@ -63,6 +57,7 @@ class Analyzer:
         # load articles
         cursor = self.connector.connect()
         sql = "SELECT articleIndex, title, text FROM news.article WHERE downloadDate=%s and groupIndex is not null" % self.date
+        # sql = "SELECT articleIndex, title, text FROM news.article WHERE groupIndex is not null"
         try:
             cursor.execute(sql)
             self.articles = cursor.fetchall()
@@ -75,10 +70,12 @@ class Analyzer:
             # generate summary
             summary = self.get_summary(article[1], article[2])
             # sentiment analysis
-            sentiment_score = self.get_sentiment_score(article[2])
+            sentiment_score = self.get_sentiment_score(article[1], article[2])
+            # print(article[0] + '\t' + article[1] +'\t'+ str(sentiment_score))
             # upload to DB
             sql = "UPDATE news.article SET sentimentScore='%d',summary='%s' WHERE articleIndex = '%s'" % (sentiment_score, summary, article[0])
-            # print(sql)
+            #sql = "UPDATE news.article SET sentimentScore='%d' WHERE articleIndex = '%s'" % (sentiment_score, article[0])
+
             try:
                 cursor.execute(sql)
                 self.connector.db.commit()
@@ -88,5 +85,5 @@ class Analyzer:
                 self.connector.db.rollback()
         self.connector.disconnect()
 
-# analyzer = Analyzer(date='20200709')
+# analyzer = Analyzer(date='20200801')
 # analyzer.analyze()

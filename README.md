@@ -5,9 +5,12 @@ A Multi-perspective Covid-19-related International News App
 https://youtu.be/oCnLdIDYHfg
 
 ## UI
+
 <img src="https://github.com/rubychen0611/Unbiased/blob/master/images/overview.png" width = "500"/>
+
 ## Overview
-<img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E4%B8%BB%E9%A1%B5.png" width = "200"/> <img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%96%B0%E9%97%BB%E9%A1%B5.png" width = "200"/> <img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%B3%A8%E5%86%8C.png" width = "200"/>
+
+<img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E4%B8%BB%E9%A1%B5.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%96%B0%E9%97%BB%E9%A1%B5.png" width = "200"/><img src="https://github.com/rubychen0611/Unbiased/blob/master/images/%E6%B3%A8%E5%86%8C.png" width = "200"/>
 
 ## Final Design Document
 https://drive.google.com/file/d/1dr0EPRQCG4lW_C1QAvIUQ315qPz4xAGz/view?usp=sharing

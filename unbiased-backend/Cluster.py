@@ -46,6 +46,7 @@ class Cluster():
         '''从数据库中获取未分类的数据'''
         cursor = self.connector.connect()
         sql = "SELECT articleIndex, title, text, mediaIndex FROM news.article WHERE downloadDate='%s'" % (self.date)
+        # sql = '''SELECT articleIndex, title, text, mediaIndex  FROM news.article where downloadDate in ('20200728', '20200729', '20200731', '20200801')'''
         try:
             cursor.execute(sql)
             self.articles = cursor.fetchall()
@@ -121,7 +122,7 @@ class Cluster():
 
     def cluster(self):
         X = self.encode_text(encode_obj='text', vector='tf-idf')
-        db_model = DBSCAN(eps=0.45, min_samples=3, metric='cosine').fit(X)
+        db_model = DBSCAN(eps=0.4, min_samples=3, metric='cosine').fit(X)
         joblib.dump(db_model, './models/model_%s.pkl' % self.date)
         self.group_list = db_model.labels_
 
@@ -157,7 +158,7 @@ class Cluster():
         self.connector.disconnect()
         self.logger.info("Successfully update group indices.")
 
-# cluster = Cluster(date='20200709')
+# cluster = Cluster(date='20200728')
 # cluster.remove_useless_articles() # 执行一次即可
 # cluster.load_articles()
 # cluster.cluster()
