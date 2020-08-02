@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:unbiased/Common/State.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 
 
@@ -30,6 +31,19 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
     List<LCObject> article_objs = await query_article.find();
     for (LCObject article_obj in article_objs)
     {
+      List<Comment> comments;
+      for (LCObject comment in article_obj['Comments'])
+      {
+//        // 获取文章评论
+//        comments.add(Comment(
+//            content: comment['Content'],
+//            date: comment['createdAt'],
+//            user: LCUser(
+//
+//            )
+//        ));
+      }
+
       articles.add(Article(
           objectId: article_obj.objectId,
           title: article_obj['Title'],
@@ -41,7 +55,8 @@ Future<List<NewsGroup>> getNewsGroupData(int cur_count, bool loadMore) async
           summary: article_obj['Summary'],
           img_url: article_obj['ImageURL'],
           score: article_obj['SentimentScore'],
-          link_url: article_obj['Link']
+          link_url: article_obj['Link'],
+          comments: comments
       ));
     }
 

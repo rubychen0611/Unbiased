@@ -14,89 +14,98 @@ class ArticlePage extends StatefulWidget {
     Key key,
     @required this.article, // 接收一个Article参数
   }) : super(key: key);
+
   @override
   _ArticlePageState createState() => new _ArticlePageState();
   final Article article;
 }
 
 
-class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin {
+class _ArticlePageState extends State<ArticlePage>
+    with TickerProviderStateMixin {
   List<dynamic> future_favoriteIds;
   bool _ifFavorite = false;
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     initFavoriteState();
-
   }
-  Future initFavoriteState() async{
+
+  Future initFavoriteState() async {
     bool value = await getIfFavorite(widget.article.objectId);
     setState(() {
       _ifFavorite = value;
     });
   }
+
   void handleFavoriteChanges(bool isLogin) async
   {
-    if(!isLogin)
-      {
-        Fluttertoast.showToast(msg: 'Please sign in/up first.');
-        return;
-      }
+    if (!isLogin) {
+      Fluttertoast.showToast(msg: 'Please sign in/up first.');
+      return;
+    }
 
     try {
       bool succ = await addArticleToFavorites(widget.article.objectId);
-      if(succ) {
+      if (succ) {
         Fluttertoast.showToast(msg: 'Successfully added to favorites.');
         setState(() {
           _ifFavorite = true;
         });
       }
-      else{
-        Fluttertoast.showToast(msg:'Removed from favorites.');
+      else {
+        Fluttertoast.showToast(msg: 'Removed from favorites.');
         setState(() {
           _ifFavorite = false;
         });
       }
-    } catch(e)
-    {
-      Fluttertoast.showToast(msg:'Error.');
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Error.');
     }
   }
+
   @override
   Widget build(BuildContext context) {
+    List<Comment> commentsList = widget.article.comments;
+    print("article page: ");
+    print(commentsList);
     return Scaffold(
         appBar: new AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
-                onPressed: () {
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () {
                     Navigator.of(context).pop();
-                },
-              );
-            },
-          ),
-            actions: <Widget>[      //增加收藏按钮
+                  },
+                );
+              },
+            ),
+            actions: <Widget>[ //增加收藏按钮
               Consumer<UserModel>(
-                  builder: (BuildContext context, UserModel userModel, Widget child){
-                  return new FavoriteButton(ifFavorite: _ifFavorite, isLogin: userModel.isLogin(), onChanged: handleFavoriteChanges);
+                  builder: (BuildContext context, UserModel userModel,
+                      Widget child) {
+                    return new FavoriteButton(ifFavorite: _ifFavorite,
+                        isLogin: userModel.isLogin(),
+                        onChanged: handleFavoriteChanges);
                   }
               )
-              ]
+            ]
         ),
-              body: new ListView(
-              children: <Widget>[
-              widget.article.img_url!=null? CachedNetworkImage( // 新闻图片（可缓存）
+        body: new ListView(
+          children: <Widget>[
+            widget.article.img_url != null ? CachedNetworkImage( // 新闻图片（可缓存）
               placeholder: (context, url) =>
-              CircularProgressIndicator(),
+                  CircularProgressIndicator(),
               imageUrl: widget.article.img_url,
               errorWidget: (context, url, error) => Icon(Icons.error),
               height: 180.0,
               fit: BoxFit.cover,
-              ) : Container(),
-              Container(
+            ) : Container(),
+            Container(
               padding: const EdgeInsets.symmetric(
-              horizontal: 10.0, vertical: 5.0),
+                  horizontal: 10.0, vertical: 5.0),
               child: new Text(
 //                '\'Once Upon a Virus\': China mocks U.S. coronavirus response in Lego-like animation',
                 widget.article.title,
@@ -118,10 +127,12 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                         child: new Row(
                           children: <Widget>[
                             CachedNetworkImage(
-                              placeholder: (context, url) => CircularProgressIndicator(),
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
                               imageUrl: widget.article.media.logo_url,
                               height: 32,
-                              errorWidget: (context, url, error) => Icon(Icons.error),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ],
                         )),
@@ -142,7 +153,7 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                       child: new Container(
                         alignment: Alignment.topRight,
                         child:
-                          Global.getSentimentIcon(widget.article.score, 40),
+                        Global.getSentimentIcon(widget.article.score, 40),
                       ))
                 ],
               ),
@@ -183,7 +194,7 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                   new IconButton(
                     icon: Icon(Icons.arrow_forward_ios),
                     color: Colors.teal,
-                    onPressed:(){
+                    onPressed: () {
                       // WebView跳转
                       print(widget.article.link_url);
                       Navigator.of(context)
@@ -204,7 +215,7 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                           icon: Icon(Icons.error_outline),
                           color: Colors.red,
                           iconSize: 30,
-                          onPressed:(){
+                          onPressed: () {
                             Fluttertoast.showToast(
                               msg: 'Successfully sent report.',
                               toastLength: Toast.LENGTH_LONG,
@@ -217,6 +228,29 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                 ],
               ),
             ),
+            Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 10.0),
+                child: new Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: new ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 2,
+                        itemBuilder: (context, index) {
+                          return new ListTile(
+                            title: new Text('${commentsList[index].content}'),
+                            leading: Icon(
+                              Icons.account_circle,
+                              size: 40,
+                            ),
+                          );
+                        },
+                      ),
+
+                    )
+                  ],
+                )),
             Container(
                 padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -241,9 +275,12 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
     );
   }
 }
+
 class WebViewPage extends StatefulWidget {
   String url;
+
   WebViewPage({this.url});
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -253,9 +290,12 @@ class WebViewPage extends StatefulWidget {
 
 class WebViewPageState extends State<WebViewPage> {
   String url;
+
   WebViewPageState({this.url});
+
   WebViewController _controller;
   bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -278,17 +318,17 @@ class WebViewPageState extends State<WebViewPage> {
               var url = request.url;
               print("visit $url");
               setState(() {
-              isLoading = true; // 开始访问页面，更新状态
-            });
+                isLoading = true; // 开始访问页面，更新状态
+              });
 
-            return NavigationDecision.navigate;
-          },
-          onPageFinished: (String url) {
-            setState(() {
-              isLoading = false; // 页面加载完成，更新状态
-            });
-          },
-        ),
+              return NavigationDecision.navigate;
+            },
+            onPageFinished: (String url) {
+              setState(() {
+                isLoading = false; // 页面加载完成，更新状态
+              });
+            },
+          ),
           isLoading
               ? Container(
             child: Center(
@@ -313,7 +353,9 @@ class WebViewPageState extends State<WebViewPage> {
 }
 
 class FavoriteButton extends StatelessWidget {
-  FavoriteButton({Key key, this.ifFavorite: false, this.isLogin, this.onChanged}) : super(key: key);
+  FavoriteButton(
+      {Key key, this.ifFavorite: false, this.isLogin, this.onChanged})
+      : super(key: key);
   final bool ifFavorite;
   final bool isLogin;
   final ValueChanged<bool> onChanged;
@@ -321,7 +363,8 @@ class FavoriteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new IconButton(
-        icon: new Icon(isLogin && ifFavorite ? Icons.star: Icons.star_border, size: 32,),
+        icon: new Icon(
+          isLogin && ifFavorite ? Icons.star : Icons.star_border, size: 32,),
         onPressed: () async {
           // 添加到收藏夹
           onChanged(isLogin);

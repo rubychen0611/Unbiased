@@ -11,6 +11,16 @@ class Media
   Media({this.name, this.logo_url}){}
 }
 
+// 评论
+class Comment
+{
+  String content;     // 评论内容
+  DateTime date;      // 评论时间
+  LCUser user;    // 评论人
+  Comment({this.content, this.date, this.user}){}
+
+}
+
 // 文章
 class Article{
   String objectId;  // LeanCloud ObjectID
@@ -21,7 +31,8 @@ class Article{
   String img_url;       // 代表图片url
   int score;          // 情绪分析得分（0-100）
   String link_url;      // 原文地址
-  Article({this.objectId, this.title, this.media, this.date, this.summary, this.img_url, this.score, this.link_url}){}
+  List<Comment> comments;   // 评论
+  Article({this.objectId, this.title, this.media, this.date, this.summary, this.img_url, this.score, this.link_url, this.comments}){}
 
 }
 
