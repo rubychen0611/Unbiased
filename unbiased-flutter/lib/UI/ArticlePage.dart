@@ -9,6 +9,7 @@ import 'package:unbiased/Common/Requests.dart';
 import 'package:unbiased/Common/State.dart';
 import 'package:unbiased/DataModel/NewsGroup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:unbiased/UI/LoginPage.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:intl/intl.dart';
 
@@ -81,14 +82,6 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    List<Comment> commentsList = widget.article.comments;
-    //print("article page: ");
-    //print(commentsList[0].date);
-//    print(Global.getArticleTime(commentsList[0].date));
-
-    //print(commentsList[0].username);
-
-
     TextEditingController _userEtController = TextEditingController();
     return Scaffold(
         appBar: new AppBar(
@@ -163,7 +156,6 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                           widget.article.media.name +
                               ' · ' +
                               Global.getArticleTime(widget.article.date),
-//                    'Quartz' + ' · ' + '5 hrs',
                           style: new TextStyle(fontSize: 18),
                         ),
                       )),
@@ -215,14 +207,12 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
                     color: Colors.teal,
                     onPressed: () {
                       // WebView跳转
-                      //print(widget.article.link_url);
                       Navigator.of(context)
                           .push(new MaterialPageRoute(builder: (_) {
                         return new WebViewPage(
                           url: widget.article.link_url,
                         );
                       }));
-//                      Navigator.push(context, MaterialPageRoute(builder: (cx) => WebViewPage(article.link_url)));
                     },
 
                   ),
@@ -271,42 +261,57 @@ class _ArticlePageState extends State<ArticlePage> with TickerProviderStateMixin
             Container(
                 padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                child: new Row(children: <Widget>[
+                child: Consumer<UserModel>(
+                  builder: (BuildContext context, UserModel userModel,
+                  Widget child) { return new Row(children: <Widget>[
                   new Container(
-                    child: TextField(
-                      controller: _userEtController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Type a new comment...',
-                        icon: Icon(
-                          Icons.account_circle,
-                          size: 40,
+                      child: TextField(
+                        controller: _userEtController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Type a new comment...',
+                          icon: Icon(
+                            Icons.account_circle,
+                            size: 40,
+                          ),
                         ),
-                      ),
-                      autofocus: false,
-                      textInputAction: TextInputAction.send,
-                      onSubmitted: (val) async {
-                        print('输入了${val}');
-                        try {
-                          bool succ = await addCommentToArticle(widget.article
-                              .objectId, val);
-                        }
-                        catch (e) {
-                          Fluttertoast.showToast(msg: 'Comment Error.');
-                        }
-                        _userEtController.text = "";
-                        Fluttertoast.showToast(
-                          msg: 'Successfully make comment.',
-                          toastLength: Toast.LENGTH_LONG,
-                          textColor: Colors.deepOrange,
-                          gravity: ToastGravity.BOTTOM,
-                        );
-                        _update();
-                      },
+                        autofocus: false,
+                        textInputAction: TextInputAction.send,
+                        onSubmitted: (val) async {
+                          if (!userModel.isLogin()) {
+                            Fluttertoast.showToast(
+                                msg: 'Please sign in/up first.');
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                                  return LoginPage();
+                                }
+                                ));
+                            return;
+                          }
+                          try {
+                            bool succ = await addCommentToArticle(widget.article
+                                .objectId, val);
+                          }
+                          catch (e) {
+                            Fluttertoast.showToast(msg: 'Comment Error.');
+                          }
+                          _userEtController.text = "";
+                          Fluttertoast.showToast(
+                            msg: 'Successfully make comment.',
+                            toastLength: Toast.LENGTH_LONG,
+                            textColor: Colors.deepOrange,
+                            gravity: ToastGravity.BOTTOM,
+                          );
+                          _update();
+                        },
                     ),
                     width: 350,
                   ),
-                ])),
+                  ]
+                  );
+                  }
+                  )
+            ),
           ],
         )
     );
@@ -360,9 +365,6 @@ class WebViewPageState extends State<WebViewPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('WebSite'),
-//        actions: <Widget>[
-//          BlogMenu(_controller.future),
-//        ],
       ),
       body: Stack(
         children: [
@@ -374,7 +376,6 @@ class WebViewPageState extends State<WebViewPage> {
             },
             navigationDelegate: (NavigationRequest request) {
               var url = request.url;
-              print("visit $url");
               setState(() {
                 isLoading = true; // 开始访问页面，更新状态
               });

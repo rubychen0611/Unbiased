@@ -175,19 +175,14 @@ Future <List<Comment>> getComments(String articleId) async
   query_article.whereEqualTo('objectId', articleId);
   LCObject article_obj = await query_article.first();
 
-  print('Start to get comments');
   // 获取文章评论
   List<dynamic> comment_ids = article_obj['Comments'];
-//      print("Comment id");
-//      print(comment_ids);
   List<Comment> comments = [];
   if (comment_ids != null) {
     LCQuery<LCObject> query_comment = LCQuery('Comment');
     query_comment.include('User.username');
     query_comment.whereContainedIn('objectId', comment_ids);
     List<LCObject> comment_objs = await query_comment.find();
-    print("Comment obj");
-    print(comment_objs);
     for (LCObject comment_obj in comment_objs) {
       comments.add(Comment(
           content: comment_obj['Content'],
