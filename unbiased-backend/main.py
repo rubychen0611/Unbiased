@@ -15,7 +15,7 @@ crawler = Crawler(this_date=this_date)
 crawler.crawl()
 
 # 聚类
-cluster = Cluster(date='20200801')
+cluster = Cluster(date=this_date)
 cluster.remove_useless_articles()
 cluster.load_articles()
 cluster.cluster()
